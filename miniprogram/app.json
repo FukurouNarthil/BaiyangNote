@@ -6,7 +6,10 @@
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/chooseLib/chooseLib",
+
+    "pages/newBookRecommend/newBooks",
+    "pages/myPage/myPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -36,7 +36,21 @@
   <!-- 新建云函数 -->
   <view class="uploader">
     <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
+      <text>空开空开空开</text>
+    </navigator>
+  </view>
+
+  <!-- 新书推荐的入口 -->
+  <view class="uploader">
+    <navigator url="../newBookRecommend/newBooks" open-type="navigate" class="uploader-text">
+      <text>新书推荐的入口</text>
+    </navigator>
+  </view>
+
+    <!-- "我的"页面的入口 -->
+  <view class="uploader">
+    <navigator url="../myPage/myPage" open-type="navigate" class="uploader-text">
+      <text>"我的"页面的入口</text>
     </navigator>
   </view>
 
