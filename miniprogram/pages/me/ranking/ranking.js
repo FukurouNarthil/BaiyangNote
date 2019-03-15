@@ -1,4 +1,4 @@
-// pages/userConsole/userConsole.js
+// pages/me/ranking/ranking.js
 Page({
 
   /**

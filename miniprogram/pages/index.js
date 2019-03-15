@@ -1,4 +1,4 @@
-// pages/userConsole/userConsole.js
+// miniprogram/pages/index.js
 Page({
 
   /**

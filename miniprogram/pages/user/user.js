@@ -1,4 +1,4 @@
-// pages/userConsole/userConsole.js
+// pages/user/user.js
 Page({
 
   /**
