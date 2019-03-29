@@ -1,0 +1,24 @@
+.usr_info {
+  height: 30vh;
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.usr_name {
+  color: #757575;
+  margin-top: 22rpx;
+}
+
+.usr_avatar{
+  width: 160rpx;
+  height: 160rpx;
+  margin-top: 30rpx;
+  border-radius: 50%;
+}
+
+.usr_sign {
+  color: #757575;
+  margin-top: 22rpx;
+}

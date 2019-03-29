@@ -9,7 +9,6 @@
     "pages/chooseLib/chooseLib",
     "pages/newBookRecommend/newBooks",
     "pages/myPage/myPage",
-    "pages/user/user",
     "pages/me/collection/collection",
     "pages/me/ranking/ranking"
   ],
