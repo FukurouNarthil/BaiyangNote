@@ -5,3 +5,11 @@
   align-items: center;
   box-sizing: border-box;
 } 
+
+.weui-navbar {
+  background: white;
+  bottom: 0;
+  top: initial;
+  border-top: 1rpx solid #ccc;
+  border-bottom: 0;
+}
