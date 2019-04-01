@@ -40,18 +40,4 @@
     </navigator>
   </view>
 
-  <!-- 新书推荐的入口 -->
-  <view class="uploader">
-    <navigator url="../newBookRecommend/newBooks" open-type="navigate" class="uploader-text">
-      <text>新书推荐的入口</text>
-    </navigator>
-  </view>
-
-    <!-- "我的"页面的入口 -->
-  <view class="uploader">
-    <navigator url="../myPage/myPage" open-type="navigate" class="uploader-text">
-      <text>"我的"页面的入口</text>
-    </navigator>
-  </view>
-
 </view>
