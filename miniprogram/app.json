@@ -17,7 +17,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "白杨手账",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -26,23 +26,23 @@
     "backgroundColor": "#F6F6F6",
     "borderStyle" : "white",
     "list": [{
-      "iconPath": "pages/index/image/home.png",
-      "selectedIconPath": "pages/index/image/home.png",
+      "iconPath": "images/home.png",
+      "selectedIconPath": "images/selected_home.png",
       "pagePath": "pages/index/index",
       "text": "首页"
     }, {
-      "iconPath": "pages/index/image/recommend.png",
-      "selectedIconPath": "pages/index/image/recommend.png",
+      "iconPath": "images/recommend.png",
+      "selectedIconPath": "images/selected_recommend.png",
       "pagePath": "pages/newBookRecommend/newBooks",
       "text": "新书推荐"
     }, {
-      "iconPath": "pages/index/image/calendar.png",
-      "selectedIconPath": "pages/index/image/calendar.png",
+      "iconPath": "images/calendar.png",
+      "selectedIconPath": "images/selected_calendar.png",
       "pagePath": "pages/calendar/calendar",
       "text": "打卡日历"
     }, {
-      "iconPath": "pages/index/image/me.png",
-      "selectedIconPath": "pages/index/image/me.png",
+      "iconPath": "images/me.png",
+      "selectedIconPath": "images/selected_me.png",
       "pagePath": "pages/myPage/myPage",
       "text": "我的"
     }]
