@@ -4,16 +4,29 @@
 }
 
 .usr_info {
-  height: 30vh;
+  height: 40vh;
   width: 100%;
   font-size: 30rpx;
   text-align: center;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .usr_name {
-  color: #757575;
-  margin-top: 22rpx;
+  color: #486a00;
+  border-bottom: #486A00 2px solid;
+  width: 84%;
+  height: 150rpx;
+  font-size: 50rpx;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.usr_name text {
+  position: absolute;
+  top: 80rpx;
 }
 
 .usr_avatar{
@@ -24,27 +37,41 @@
 }
 
 .usr_sign {
-  color: #757575;
   margin-top: 22rpx;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #768f40;
+}
+.usr_sign text {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .sub_page_containter {
   margin-top: 60rpx;
-  height: 640rpx;
-  width: 100%;
+  height: 500rpx;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .sub_page {
   height: 280rpx;
-  width: 100%;
-  border-top: #e6e6e6 10rpx solid;
-  font-size: 35rpx;
+  margin-bottom: 30rpx;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding-left: 50rpx;
+  justify-content: center;
+  align-items: center;
 }
-
+.sub_page .button {
+  width: 240rpx;
+  height: 80rpx;
+}
