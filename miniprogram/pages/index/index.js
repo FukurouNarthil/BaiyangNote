@@ -6,19 +6,14 @@ Page({
   data: {
     pages: ['timer', 'shelf'],
     imgUrl: 'images/timerFrame.png',
-    indicatorDots: false,
-    vertical: false,
-    autoplay: false,
-    circular: false,
-    interval: 2000,
-    duration: 500,
     previousMargin: 30,
     nextMargin: 30,
     idx: 1,
     current: 1,
     isClick: 0,
     time: 0,
-    displayTime: '00:00:00'
+    displayTime: '00:00:00',
+    latest_books: ["高等数学", "Python编程", "Linux从入门到放弃", "Java：学不会"]
   },
 
   onLoad: function() {

@@ -1,7 +1,7 @@
 <view class="container">
   <view class="swiper_contianer">
     <!--滑动页面-->
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}rpx" next-margin="{{nextMargin}}rpx" current="{{idx}}">
+    <swiper previous-margin="{{previousMargin}}rpx" next-margin="{{nextMargin}}rpx" current="{{idx}}">
       <!--共计两个滑动页面：打卡页及最近阅读页，默认最近阅读页-->
       <block wx:for="{{pages}}" wx:key="*this">
         <swiper-item>
@@ -25,8 +25,21 @@
             <view wx:else>
               <!--书本展示区-->
                 <text class='title'>最近阅读</text>
-                <view class='book-display'></view>
-                <text class='link' bindtap='redirectTo' data-='{{item}}'>前往书架</text>
+                <view class='books-display'>
+                  <block wx:for="{{latest_books}}" wx:key="*that">
+                    <view wx:if="{{index<2}}">
+                      <view class='display' style="left:{{(index%2+1)*40+(index%2)*190}}rpx; top:60rpx;">
+                      {{item}}
+                      </view>
+                    </view>
+                    <view>
+                      <view class='display' style='left:{{(index%2+1)*40+(index%2)*190}}rpx; top:330rpx;'>
+                      {{item}}
+                      </view>
+                    </view>
+                  </block>
+                </view>
+                <text class='link' bindtap='redirectTo' data-page='{{item}}'>前往书架</text>
             </view>
           </view>
         </swiper-item>
