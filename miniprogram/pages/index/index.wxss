@@ -30,19 +30,30 @@ page {
   margin-top: 6px;
   box-shadow: 0px 0px 10px 5px #e7e7e7;
 }
-.swiper-item .clock {
-  width: 500rpx;
-  height: 500rpx;
-  position: absolute;
-  top: 18%;
-  left: 5%;
-}
 .swiper-item .startButton {
   width: 200rpx;
   height: 70rpx;
   position: absolute;
   left: 33%;
-  bottom: 14%;
+  bottom: 15%;
+}
+
+.title{
+  height: 60rpx;
+  width: 150rpx;
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  font-size: 38rpx;
+  transform: translate(-50%, -50%);
+}
+
+.link {
+  height: 30rpx;
+  width: 180rpx;
+  position: absolute;
+  bottom: 8%;
+  font-size: 30rpx;
 }
 
 .timer{
@@ -50,28 +61,38 @@ page {
   align-items: center;
   justify-content: center;
   color: #486A00;
-  font-size: 38rpx;
 }
-.timer:before{
-  content: '读书打卡';
+.clock-container {
+  width: 500rpx;
+  height: 500rpx;
   position: absolute;
-  top: 10%;
-  left: 25%;
-  transform: translate(-50%, -50%);
+  top: 18%;
+  left: 5%;
+}
+.clock-container image {
+  height: 100%;
+  width: 100%;
+}
+.clock {
+  position: absolute;
+  top: 37%;
+  left: 16%;
+  font-size: 80rpx;
+  font-weight: bold;
+  color: #324531;
+}
+.timer .link {
+  left: 36%;
 }
 
 .shelf{
+  height: 96%;
+  width: 94%;
   position: relative;
   align-items: center;
   justify-content: center;
   color: #486A00;
-  font-size: 38rpx;
 }
-.shelf:before{
-  content: '最近阅读';
-  position: absolute;
-  top: 10%;
-  left: 25%;
-  transform: translate(-50%, -50%);
+.shelf .link {
+  left: 40%;
 }
-

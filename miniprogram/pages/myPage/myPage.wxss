@@ -16,7 +16,7 @@
 
 .usr_name {
   color: #486a00;
-  border-bottom: #486A00 2px solid;
+  border-bottom: #486A00 1px solid;
   width: 84%;
   height: 150rpx;
   font-size: 50rpx;
@@ -26,13 +26,13 @@
 }
 .usr_name text {
   position: absolute;
-  top: 80rpx;
+  top: 60rpx;
 }
 
 .usr_avatar{
   width: 160rpx;
   height: 160rpx;
-  margin-top: 30rpx;
+  margin-top: 40rpx;
   border-radius: 50%;
 }
 

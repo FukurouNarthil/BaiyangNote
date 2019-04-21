@@ -1,8 +1,10 @@
 //index.js
 const app = getApp()
+var interval = null;
+
 Page({
   data: {
-    books: ['timer', 'shelf'],
+    pages: ['timer', 'shelf'],
     imgUrl: 'images/timerFrame.png',
     indicatorDots: false,
     vertical: false,
@@ -13,7 +15,10 @@ Page({
     previousMargin: 30,
     nextMargin: 30,
     idx: 1,
-    current: 1
+    current: 1,
+    isClick: 0,
+    time: 0,
+    displayTime: '00:00:00'
   },
 
   onLoad: function() {
@@ -40,6 +45,7 @@ Page({
         }
       }
     })
+
   },
 
   onGetUserInfo: function(e) {
@@ -71,6 +77,30 @@ Page({
         })
       }
     })
+  },
+
+  onShow: function() {
+    if (!interval && this.data.time != 0) {
+      interval = setInterval(() => {
+        this.setData({
+          time: this.data.time + 1,
+          displayTime: this.parseTime(this.data.time)
+        })
+      }, 10);
+    }
+  },
+
+  onHide: function() {
+    console.log('onHide...')
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    } else {
+      this.setData({
+        time: 0,
+        displayTime: '00:00:00'
+      })
+    }
   },
 
   // 上传图片
@@ -123,12 +153,50 @@ Page({
     })
   },
 
-  //获取滑动页当前页号
-  getPageIndex: function(e) {
-    console.log(e.detail);
-    var self = this;
-    self.setData({
-      current: e.detail.current
-    });
+
+  parseTime: function() {
+    var hh = parseInt(this.data.time / 100 / 3600);
+    if(hh < 10) hh = '0' + hh;
+    var mm = parseInt(this.data.time / 100 / 60 % 60);
+    if (mm < 10) mm = '0' + mm;
+    var ss = parseInt(this.data.time % 6000 / 100);
+    if (ss < 10) ss = '0' + ss;
+    return `${hh}:${mm}:${ss}`
+  },
+
+  startTimer: function() {
+    console.log("hello")
+    if (!interval) {
+      interval = setInterval(() => {
+        this.setData({
+          isClick: 1,
+          time: this.data.time + 1,
+          displayTime: this.parseTime(this.data.time)
+        })
+      }, 10);
+    }
+  },
+
+  stopTimer: function() {
+    console.log('stop')
+    clearInterval(interval);
+    interval = null;
+    this.setData({
+      isClick: 0,
+      time: 0,
+      displayTime: '00:00:00'
+    })
+  },
+
+  redirectTo: function(e) {
+    if(e.currentTarget.dataset.page == "timer"){
+      wx.switchTab({
+        url: '../calendar/calendar',
+      })
+    } else {
+      wx.navigateTo({
+        url: '../shelf/shelf',
+      })
+    }
   }
 })

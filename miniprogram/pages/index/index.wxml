@@ -1,12 +1,32 @@
 <view class="container">
   <view class="swiper_contianer">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}rpx" next-margin="{{nextMargin}}rpx" current="{{idx}}" bindchange="getPageIndex">
-      <block wx:for="{{books}}" wx:key="*this">
+    <!--滑动页面-->
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}rpx" next-margin="{{nextMargin}}rpx" current="{{idx}}">
+      <!--共计两个滑动页面：打卡页及最近阅读页，默认最近阅读页-->
+      <block wx:for="{{pages}}" wx:key="*this">
         <swiper-item>
           <view class="swiper-item {{item}}">
-            <view wx:if="{{!current}}">
-              <image class="clock" src="{{imgUrl}}"></image>
-              <image class="startButton" src="images/startButton.png"></image>
+            <!--根据index判断当前页面为哪个页面，显示不同的内容-->
+            <view wx:if="{{!index}}">
+              <!--计时器-->
+              <text class="title">读书打卡</text>
+              <view class='clock-container'>
+                <image src='{{imgUrl}}'></image>
+                <view class='clock'>{{displayTime}}</view>
+              </view>
+              <view wx:if="{{!isClick}}">
+                <image class="startButton" src="images/startButton.png" bindtap="startTimer"></image>
+              </view>
+              <view wx:else>
+                <image class="startButton" src="images/startButton_selected.png" bindtap="stopTimer"></image>
+              </view>
+              <text class="link" bindtap="redirectTo" data-page="{{item}}">查看打卡记录</text>
+            </view>
+            <view wx:else>
+              <!--书本展示区-->
+                <text class='title'>最近阅读</text>
+                <view class='book-display'></view>
+                <text class='link' bindtap='redirectTo' data-='{{item}}'>前往书架</text>
             </view>
           </view>
         </swiper-item>

@@ -5,7 +5,7 @@
     </view>
     <image class='usr_avatar' src='img/flower.jpg' bindtap='toEditPage'></image>
     <view class='usr_sign'>
-      <text>tsttesttesttesttesttesttestteststtesttesttesttestt</text>
+      <text>Hello World!</text>
     </view>
   </view>
 

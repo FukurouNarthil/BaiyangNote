@@ -91,7 +91,6 @@ Page({
       [str]: 1,
       selectedIndex: idx
     })
-    console.log(self.data)
     wx.navigateTo({
       url: '../me/' + pageName + '/' + pageName,
     })
