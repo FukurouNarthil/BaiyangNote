@@ -24,9 +24,18 @@
   display: flex;
   justify-content: center;
 }
-.usr_name text {
+.usr_name_text {
   position: absolute;
   top: 60rpx;
+}
+
+.login_button{
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border: #486A00;
+  /* background-color: #486a00; */
+  color:#486A00;
+
 }
 
 .usr_avatar{
