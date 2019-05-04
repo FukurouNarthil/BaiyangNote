@@ -1,3 +1,5 @@
+@import '../../component/wxSearch/wxSearch';
+
 page {
   height: 100%;
   font-size: 32rpx;
@@ -8,18 +10,173 @@ page {
 .container{
   height: 100%;
   background-color: #eeeeee;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .container_card{
-  /* margin-top: 20px; */
   display: block;
-  height: 88%;
+  height: 92%;
   width: 72%;
   border-radius: 5%;
   box-shadow: 0px 0px 5px 5px #e7e7e7;
   background-color: #ffffff;
   margin:5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+.title_row{
+  height:20px;
+  width:100%;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+.title{
+  color: #486A00;
+  font-size: 45rpx;
+}
+
+/* 两列列表样式 start */
+.gridview {
+    position: relative;
+    width:100%;
+    height:78%;
+    overflow: scroll;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+ /* .gridview:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+} 
+ .gridview:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-left: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+}  */
+.gridview-item {
+    position: relative;
+    float: left;
+    padding:10px;
+    width:50%;
+    box-sizing: border-box;
+}
+ /* .gridview-item:before {
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-right: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+} 
+ .gridview-item:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}  */
+
+
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+
+.gridview-item:active {
+    background-color: #ECECEC;
+}  
+.gridview-item_img {
+    position: relative;
+    float: left;
+    /* padding: 20rpx; */
+    width: 100%;
+    height:300rpx;
+    box-sizing: border-box;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:10px;
+    /* background:#80CBC4; */
+}
+.gridview-item_text{
+    width:60px;
+    height:30rpx;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    color:#486A00;
+    margin-left:25px;
+}
+/* 两列列表样式 end */
+
+.page_row{  
+  display: flex;  
+  flex-direction: row ;
+  margin-top:10rpx;
+  margin-bottom:10rpx;   
+} 
+
+.search{  
+  width: 100%;  
+}  
+.search_arr {  
+  border: 1px solid #d0d0d0;  
+  border-radius: 10rpx;  
+}  
+.search_arr input{  
+  height: 30rpx;  
+}   
+ 
+.searchicon {  
+  margin-left: 90rpx;  
+  margin-top: 10rpx; 
+  position: absolute;  
+  left:25rpx;  
+  z-index: 2;  
+  width: 20px;  
+  height: 20px;  
+  text-align: center;  
+}  
+
+.searchText{
+  margin-left: 50rpx;  
+}
+
