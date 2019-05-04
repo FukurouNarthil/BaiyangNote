@@ -1,0 +1,25 @@
+page {
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+  background-color: #eeeeee;
+}
+
+.container{
+  height: 100%;
+  background-color: #eeeeee;
+  margin-top: 20px;
+}
+
+.container_card{
+  /* margin-top: 20px; */
+  display: block;
+  height: 88%;
+  width: 72%;
+  border-radius: 5%;
+  box-shadow: 0px 0px 5px 5px #e7e7e7;
+  background-color: #ffffff;
+  margin:5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

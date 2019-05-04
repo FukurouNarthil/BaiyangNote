@@ -1,6 +1,27 @@
-.container {
-  width: 100%;
-  height: 100vh;
+page {
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+  background-color: #eeeeee;
+}
+
+.container{
+  height: 100%;
+  background-color: #eeeeee;
+  margin-top: 20px;
+}
+
+.container_card{
+  /* margin-top: 20px; */
+  display: block;
+  height: 88%;
+  width: 72%;
+  border-radius: 5%;
+  box-shadow: 0px 0px 5px 5px #e7e7e7;
+  background-color: #ffffff;
+  margin:5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .usr_info {
@@ -30,8 +51,8 @@
 }
 
 .login_button{
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: #486A00;
   /* background-color: #486a00; */
   color:#486A00;
@@ -53,6 +74,7 @@
   align-items: center;
   color: #768f40;
 }
+
 .usr_sign text {
   display: -webkit-box;
   word-break: break-all;
@@ -62,10 +84,14 @@
   -webkit-line-clamp: 2;
 }
 
+
+
 .sub_page_containter {
-  margin-top: 60rpx;
-  height: 500rpx;
+  margin-top: 35rpx;
+  height: 480rpx;
   width: 40%;
+  margin-left: 160rpx;
+  margin-right: 160rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -81,6 +107,6 @@
   align-items: center;
 }
 .sub_page .button {
-  width: 240rpx;
-  height: 80rpx;
+  width: 210rpx;
+  height: 70rpx;
 }

@@ -7,18 +7,15 @@ page {
 
 .container{
   height: 100%;
+  background-color: #eeeeee;
+  margin-top: 20px;
 }
 
-.calendar-container{
-  /* padding: 20rpx; */
-  width: 90%;
-  height: 90%;
-}
-
-.calendar-card{
+.container_card{
+  /* margin-top: 20px; */
   display: block;
-  height: 100%;
-  width: 90%;
+  height: 88%;
+  width: 72%;
   border-radius: 5%;
   box-shadow: 0px 0px 5px 5px #e7e7e7;
   background-color: #ffffff;

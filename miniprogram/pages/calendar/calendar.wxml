@@ -1,6 +1,5 @@
 <view class="container">
-  <view class="calendar-container">
-    <view class="calendar-card">
+    <view class="container_card">
 
       <view class="days-count">
         <text class="days-count-text">第 {{countDays}} 天</text>
@@ -51,5 +50,4 @@
       </view>
 
     </view>
-  </view>
 </view>
