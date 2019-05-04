@@ -31,6 +31,7 @@
 //const lunar = require('./lunar.js');
 const minYear = 1900;
 const maxYear = 2099;
+const app = getApp()
 
 Page({
 
@@ -63,14 +64,46 @@ Page({
     activeType: 'rounded',//设置日期背景效果
     //lunar:false,//是否显示农历
     addon: 'none',//额外选项
-    daysAddon: [],//日期附加选项      
+    daysAddon: [],//日期附加选项 
+
+    countDays:0,//记录打卡天数
+    allDays:[]     
   },
 
   /**
      * 生命周期函数--监听页面加载
      */
-  onLoad: function (options) {
-    console.log("this.data.day:"+this.data.day);
+  onLoad: function () {
+    this.onQueryDays();
+    this._setCalendarData(this.data.year, this.data.month);
+    console.log("对日历进行初始化完成");
+    console.log("this.data.allDays:" + this.data.allDays);
+  },
+
+  onQueryDays: function () {
+    
+    const db = wx.cloud.database()
+    //console.log('app.globalData.openid:'+ app.globalData.openid)
+    // 查询当前所有用户的信息
+    db.collection('user').where({
+      _openid: app.globalData.openid
+    }).get({
+      success: res => {
+        console.log('查询到了打卡总天数')
+        console.log('res.data[0].checkin_days.length:' + res.data[0].checkin_days.length)
+        this.setData({
+          countDays: res.data[0].checkin_days.length,
+          allDays: res.data[0].checkin_days
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
   },
 
   /**
@@ -128,13 +161,6 @@ Page({
   onShareAppMessage: function () {
 
   },
-
- 
-
-
- 
- 
-
 
   /**
    * 设置日历
@@ -198,7 +224,7 @@ Page({
       });
     }
     const days_range = temp;                                   // 本月
-    let days = empty_days.concat(days_range, empty_days_last); // 上个月 + 本月 + 下个月            
+    var days = empty_days.concat(days_range, empty_days_last); // 上个月 + 本月 + 下个月            
     // 如果要显示前后月份的日期
     if (this.data.showMoreDays) {
       // 显示下月的日期
@@ -221,40 +247,99 @@ Page({
       }
     }
 
-    /**
-     * 设置日期颜色、背景
-     */
-    for (let i = 0; i < this.data.days_color.length; i++) {
-      const item = this.data.days_color[i];
-      const background = item.background ? item.background : 'transparent';
-      for (let j = 0; j < days.length; j++) {
-        if (days[j].info == item.month && days[j].day == item.day) {
-          if (item.color) {
-            days[j].color = item.color + '!important';
-          }
-          if (item.background) {
-            days[j].background = item.background + '!important';
+    //每次加载页面都更新一下days_color数组，每次都整个数组 删掉重新开始更新
+    var days_color = new Array;
+    var allDays = this.data.allDays;
+    if (this.data.month == new Date().getMonth() + 1){
+      days_color.push({
+        month: "current", day: this.data.day, color: 'white', background: '#486a00'
+      });
+    }
+
+
+    // 查询当前所有用户的信息
+    const db = wx.cloud.database()
+    
+    db.collection('user').where({
+      _openid: app.globalData.openid
+    }).get({
+      success: res => {
+        this.setData({
+          //countDays: res.data[0].checkin_days.length,
+          allDays: res.data[0].checkin_days
+        })
+        
+        allDays = this.data.allDays;
+        console.log('allDays:' + allDays);
+        for (let i = 0; i < allDays.length; i++) {
+          console.log('allDays.length:' + allDays.length);
+          console.log('i:' + i);
+          var tempDay = allDays[i].getDate();
+          var tempMonth = allDays[i].getMonth()+1;
+          console.log('tempDay,tempMonth:' + tempDay+","+tempMonth);
+          if (tempMonth == this.data.month && tempDay!=this.data.day) {
+            console.log("hihihi");
+            days_color.push({
+              month: 'current', day: tempDay, color: '#486a00', background: '#e5e5e5'
+            });
+          }else{}
+        }
+        console.log(days_color);
+        this.setData({
+          days_color:days_color
+        });
+        /**
+       * 设置日期颜色、背景
+       */
+        for (let i = 0; i < this.data.days_color.length; i++) {
+          console.log("设置颜色:" + this.data.days_color.length);
+          const item = this.data.days_color[i];
+          const background = item.background ? item.background : 'transparent';
+          console.log("days.length:"+days.length);
+          for (let j = 0; j < days.length; j++) {
+            if (days[j].info == item.month && days[j].day == item.day) {
+              if (item.color) {
+                days[j].color = item.color + '!important';
+              }
+              if (item.background) {
+                days[j].background = item.background + '!important';
+              }
+            }
           }
         }
-      }
-    }
 
+        let days_array = new Array;
+        let week = new Array;
+        for (let i = 0; i < days.length; i++) {
+          week.push(days[i]);
+          if (i % 7 == 6) {
+            days_array.push(week);
+            week = new Array;
+          }
+        }
 
+        if (week.length > 0) {
+          days_array.push(week);
+        }
 
-    let days_array = new Array;
-    let week = new Array;
-    for (let i = 0; i < days.length; i++) {
-      week.push(days[i]);
-      if (i % 7 == 6) {
-        days_array.push(week);
-        week = new Array;
-      }
-    }
+        this.setData({
+          days_array: days_array
+        });
 
-    if (week.length > 0) {
-      days_array.push(week);
-    }
-    return days_array;
+        return this.data.days_array;
+
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err);
+        return null;
+      },
+
+    })
+
   },
 
 

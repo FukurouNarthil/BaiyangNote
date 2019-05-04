@@ -3,7 +3,7 @@
     <view class="calendar-card">
 
       <view class="days-count">
-        <text class="days-count-text">第 X 天</text>
+        <text class="days-count-text">第 {{countDays}} 天</text>
       </view>
 
       <view class="calendar">

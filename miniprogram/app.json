@@ -35,7 +35,7 @@
       "iconPath": "images/recommend.png",
       "selectedIconPath": "images/selected_recommend.png",
       "pagePath": "pages/newBookRecommend/newBooks",
-      "text": "新书推荐"
+      "text": "阅读活动"
     }, {
       "iconPath": "images/calendar.png",
       "selectedIconPath": "images/selected_calendar.png",
