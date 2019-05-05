@@ -1,2 +1,18 @@
-<!--pages/me/collection/collection.wxml-->
-<text>pages/me/collection/collection.wxml</text>
+<view class="container">
+  <view class="container_card">
+    <!--标题-->
+    <view class="top">
+      <view class="page_title">读书计划</view>
+      <view class="small_line"></view>
+    </view>
+    <!--用户头像和用户名-->
+    <view class="user">
+      <view class="avatar_view"><image src="{{avatarUrl}}" class="avatar"></image></view>
+      <view class="username">{{userName}}</view>
+    </view>
+    <!--list-->
+    <view class="list" >
+      <view class="list_item" wx:for="{{list}}">123</view>
+    </view>
+  </view>
+</view>

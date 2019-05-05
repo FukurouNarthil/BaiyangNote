@@ -11,8 +11,8 @@ Page({
       { name: "note", isClick: 0, imageUrl: 'img/note.png', imageUrl_selected: 'img/note_selected.png' },
       { name: "plan", isClick: 0, imageUrl: 'img/plan.png', imageUrl_selected: 'img/plan_selected.png' },
       { name: "collection", isClick: 0, imageUrl: 'img/collect.png', imageUrl_selected: 'img/collect_selected.png' },
-      { name: "ranking", isClick: 0, imageUrl: 'img/rank.png', imageUrl_selected: 'img/rank_selected.png' },
-      { name: "analysis", isClick: 0, imageUrl: 'img/analyze.png', imageUrl_selected: 'img/analyze_selected.png'}
+      { name: "noRanking", isClick: 0, imageUrl: 'img/rank.png', imageUrl_selected: 'img/rank_selected.png' },
+    { name: "dataAnalysis", isClick: 0, imageUrl: 'img/analyze.png', imageUrl_selected: 'img/analyze_selected.png'}
     ],
     selectedIndex: 0
   },
