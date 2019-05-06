@@ -54,7 +54,7 @@
 }
 
 .sub_page_containter {
-  margin-top: 60rpx;
+  margin-top: 50rpx;
   height: 500rpx;
   width: 40%;
   display: flex;
@@ -65,13 +65,13 @@
 
 .sub_page {
   height: 280rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .sub_page .button {
-  width: 240rpx;
-  height: 80rpx;
+  width: 200rpx;
+  height: 60rpx;
 }
