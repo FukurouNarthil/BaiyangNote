@@ -99,13 +99,18 @@ page {
 
 .sub_page {
   height: 280rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .sub_page .button {
+<<<<<<< HEAD
+  width: 200rpx;
+  height: 60rpx;
+=======
   width: 210rpx;
   height: 70rpx;
+>>>>>>> 8228decd6f683da562373918a619d7ac0799a328
 }
