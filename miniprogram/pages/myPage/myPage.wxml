@@ -1,26 +1,37 @@
 <view class='container'>
-  <view class='usr_info'>
-    <view class='usr_name'>
-      <text>test</text>
-    </view>
-    <image class='usr_avatar' src='img/flower.jpg' bindtap='toEditPage'></image>
-    <view class='usr_sign'>
-      <text>Hello World!</text>
-    </view>
-  </view>
-
-  <!--个人信息下方的可跳转子页面-->
-  <view class='sub_page_containter'>
-    <block wx:for="{{buttonGroup}}" wx:key="*this">
-      <view class='sub_page'>
-        <view wx:if="{{!item.isClick}}">
-          <image class='button' src='{{item.imageUrl}}' bindtap='redirectToSubPage' data-buttonName='{{item.name}}' data-idx='{{index}}'>
-          </image>
+  <view class='container_card'>
+    <view class='usr_info'>
+      <view class='usr_name'>
+        <view wx:if="{{logFlag}}" class="usr_name_text">
+          <text>{{userName}}</text>
         </view>
-        <view wx:else>
-          <image class='button' src='{{item.imageUrl_selected}}'></image>
+        <view wx:else >
+        <button 
+          open-type="getUserInfo" 
+          bindgetuserinfo="onGetUserInfo"
+          class="login_button"
+        >点我登录</button>
         </view>
       </view>
-    </block>
+      <image class='usr_avatar' src="{{avatarUrl}}" bindtap='toEditPage'></image>
+      <view class='usr_sign'>
+        <text>Hello World!</text>
+      </view>
+    </view>
+
+    <!--个人信息下方的可跳转子页面-->
+    <view class='sub_page_containter'>
+      <block wx:for="{{buttonGroup}}" wx:key="*this">
+        <view class='sub_page'>
+          <view wx:if="{{!item.isClick}}">
+            <image class='button' src='{{item.imageUrl}}' bindtap='redirectToSubPage' data-buttonName='{{item.name}}' data-idx='{{index}}'>
+            </image>
+          </view>
+          <view wx:else>
+            <image class='button' src='{{item.imageUrl_selected}}'></image>
+          </view>
+        </view>
+      </block>
+    </view>
   </view>
 </view>

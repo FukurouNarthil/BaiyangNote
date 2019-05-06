@@ -1,13 +1,12 @@
-// pages/me/collection/collection.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl:"../../myPage/img/flower.jpg",
-    userName:"未未酱",
-    list: [{ txt1: "111" }, { txt1: "222" }, { txt1: "333" }, { txt1: "444"}]
+    avatarUrl: "../../myPage/img/flower.jpg",
+    userName: "未未酱",
+    list: [{ txt1: "111" }, { txt1: "222" }, { txt1: "333" }, { txt1: "444" }]
   },
 
   /**
