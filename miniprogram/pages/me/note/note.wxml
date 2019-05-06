@@ -1,9 +1,8 @@
-<!--pages/me/collection/collection.wxml-->
 <view class="container">
   <view class="container_card">
     <!--标题-->
     <view class="top">
-      <view class="page_title">收藏</view>
+      <view class="page_title">笔记</view>
       <view class="small_line"></view>
     </view>
     <!--用户头像和用户名-->
@@ -17,3 +16,4 @@
     </view>
   </view>
 </view>
+

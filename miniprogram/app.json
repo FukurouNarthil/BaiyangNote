@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/newBookRecommend/newBooks",
+    "pages/readingActivities/readingActivities",
     "pages/calendar/calendar",
     "pages/myPage/myPage",
     "pages/userConsole/userConsole",
@@ -15,17 +15,17 @@
     "pages/shelf/shelf"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#eeeeee",
     "navigationBarTitleText": "白杨手账",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#486A00",
     "selectedColor": "#3A5103",
-    "backgroundColor": "#F6F6F6",
-    "borderStyle" : "white",
+    "backgroundColor": "#eeeeee",
+    "borderStyle": "white",
     "list": [{
       "iconPath": "images/home.png",
       "selectedIconPath": "images/selected_home.png",
@@ -34,8 +34,8 @@
     }, {
       "iconPath": "images/recommend.png",
       "selectedIconPath": "images/selected_recommend.png",
-      "pagePath": "pages/newBookRecommend/newBooks",
-      "text": "新书推荐"
+      "pagePath": "pages/readingActivities/readingActivities",
+      "text": "阅读活动"
     }, {
       "iconPath": "images/calendar.png",
       "selectedIconPath": "images/selected_calendar.png",

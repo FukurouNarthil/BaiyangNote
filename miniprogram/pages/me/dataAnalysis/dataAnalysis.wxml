@@ -1,0 +1,5 @@
+<!--pages/me/collection/collection.wxml-->
+<view>
+  <text>Oops...\n</text>
+  <text>数据分析暂未开放噢</text>
+</view>

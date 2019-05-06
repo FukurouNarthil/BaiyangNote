@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="container_card">
+    <!-- <import src="/component/wxSearch/wxSearch"></import>
+    <template is="wxSearch" data="{{...tabData}}"></template> -->
+    <!--阅读活动-->
+    <view class="title_row">
+      <text class="title">阅读活动</text>
+    </view>
+    <!--搜索框-->
+    <view class='page_row' bindtap="suo">  
+      <view class="search">  
+        <view class="search_arr">  
+          <icon class="searchicon" size='15' type='search'></icon>  
+          <input class="searchText" disabled placeholder="请输入关键字" value="{{searchValue}}"/>  
+        </view>  
+      </view>  
+    </view>
+    <!--双列活动列表|上拉刷新-->
+    <view class="gridview">
+      <view class="gridview-item" wx:for="{{list}}" wx:key="">
+        <image class='gridview-item_img' src="{{item.img}}"></image>
+        <view class='gridview-item_text'>{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+</view>

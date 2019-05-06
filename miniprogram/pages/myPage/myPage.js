@@ -4,12 +4,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    avatarUrl: 'img/flower.jpg',
+    userName:'我是谁',
+    logFlag:false,
     buttonGroup: [
       { name: "note", isClick: 0, imageUrl: 'img/note.png', imageUrl_selected: 'img/note_selected.png' },
       { name: "plan", isClick: 0, imageUrl: 'img/plan.png', imageUrl_selected: 'img/plan_selected.png' },
       { name: "collection", isClick: 0, imageUrl: 'img/collect.png', imageUrl_selected: 'img/collect_selected.png' },
-      { name: "ranking", isClick: 0, imageUrl: 'img/rank.png', imageUrl_selected: 'img/rank_selected.png' },
-      { name: "analysis", isClick: 0, imageUrl: 'img/analyze.png', imageUrl_selected: 'img/analyze_selected.png'}
+      { name: "noRanking", isClick: 0, imageUrl: 'img/rank.png', imageUrl_selected: 'img/rank_selected.png' },
+    { name: "dataAnalysis", isClick: 0, imageUrl: 'img/analyze.png', imageUrl_selected: 'img/analyze_selected.png'}
     ],
     selectedIndex: 0
   },
@@ -18,7 +21,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    //MyPages加载的时候请求用户授权
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              this.setData({
+                avatarUrl: res.userInfo.avatarUrl,
+                userName: res.userInfo.nickName,
+                userInfo: res.userInfo,
+                logFlag:true
+              })
+            }
+          })
+        }
+      }
+    })
+
+  },
+
+  onGetUserInfo: function (e) {
+    if (!this.logged && e.detail.userInfo) {
+      this.setData({
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        userName: e.detail.userInfo.nickName,
+        userInfo: e.detail.userInfo,
+        logFlag: true
+      })
+    }
   },
 
   /**

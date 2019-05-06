@@ -1,3 +1,35 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "tabBar": {
+    "color": "#486A00",
+    "selectedColor": "#3A5103",
+    "backgroundColor": "#eeeeee",
+    "borderStyle": "white",
+    "list": [
+      {
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/selected_home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/recommend.png",
+        "selectedIconPath": "images/selected_recommend.png",
+        "pagePath": "pages/readingActivities/readingActivities",
+        "text": "阅读活动"
+      },
+      {
+        "iconPath": "images/calendar.png",
+        "selectedIconPath": "images/selected_calendar.png",
+        "pagePath": "pages/calendar/calendar",
+        "text": "打卡日历"
+      },
+      {
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/selected_me.png",
+        "pagePath": "pages/myPage/myPage",
+        "text": "我的"
+      }
+    ]
+  }
 }
