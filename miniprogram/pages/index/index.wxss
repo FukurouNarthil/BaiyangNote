@@ -43,7 +43,7 @@ page {
 
 .title{
   height: 60rpx;
-  width: 150rpx;
+  width: 200rpx;
   position: absolute;
   top: 10%;
   left: 25%;

@@ -1,2 +1,32 @@
-<!--pages/shelf/shelf.wxml-->
-<text>pages/shelf/shelf.wxml</text>
+<view class='container'>
+  <view class='container-card'>
+    <view class='title'>书架</view>
+    <view class='display'>
+      <view class='books_row'>
+        <block wx:for='{{books_1}}' wx:key='*this'>
+          <view class='book'>
+              <view class='cover'></view>
+              <text>{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+      <view class='books_row'>
+        <block wx:for='{{books_2}}' wx:key='*this'>
+          <view class='book'>
+              <view class='cover'></view>
+              <text>{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+      <view class='books_row'>
+        <block wx:for='{{books_3}}' wx:key='*this'>
+          <view class='book'>
+              <view class='cover'></view>
+              <text class='book_title'>{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='more'>下拉加载更多</view>
+  </view>
+</view>
