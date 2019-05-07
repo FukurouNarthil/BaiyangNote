@@ -160,7 +160,6 @@ Page({
   },
 
   startTimer: function() {
-    console.log("hello")
     if (!interval) {
       interval = setInterval(() => {
         this.setData({
@@ -173,7 +172,6 @@ Page({
   },
 
   stopTimer: function() {
-    console.log('stop')
     clearInterval(interval);
     interval = null;
     this.setData({

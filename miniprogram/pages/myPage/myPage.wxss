@@ -38,7 +38,7 @@ page {
   color: #486a00;
   border-bottom: #486A00 1px solid;
   width: 84%;
-  height: 150rpx;
+  height: 130rpx;
   font-size: 50rpx;
   position: relative;
   display: flex;
@@ -53,7 +53,6 @@ page {
   margin-top: 10px;
   margin-bottom: 10px;
   border: #486A00;
-  /* background-color: #486a00; */
   color:#486A00;
 
 }
@@ -61,7 +60,7 @@ page {
 .usr_avatar{
   width: 160rpx;
   height: 160rpx;
-  margin-top: 40rpx;
+  margin-top: 30rpx;
   border-radius: 50%;
 }
 
@@ -83,10 +82,7 @@ page {
   -webkit-line-clamp: 2;
 }
 
-
-
 .sub_page_containter {
-  margin-top: 35rpx;
   height: 480rpx;
   width: 40%;
   margin-left: 160rpx;
@@ -106,6 +102,6 @@ page {
   align-items: center;
 }
 .sub_page .button {
-  width: 200rpx;
-  height: 60rpx;
+  width: 190rpx;
+  height: 65rpx;
 }
