@@ -12,7 +12,7 @@
         <view class="search_arr">  
           <icon class="searchicon" size='15' type='search'></icon>  
           <input class="searchText" disabled placeholder="请输入关键字" value="{{searchValue}}"/>  
-        </view>  
+        </view>
       </view>  
     </view>
     <!--双列活动列表|上拉刷新-->
