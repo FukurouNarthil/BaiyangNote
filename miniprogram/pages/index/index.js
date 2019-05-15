@@ -13,7 +13,8 @@ Page({
     isClick: 0,
     time: 0,
     displayTime: '00:00:00',
-    latest_books: ["高等数学", "Python编程", "Linux从入门到放弃", "Java：学不会"]
+    latest_books: ["高等数学", "Python编程", "Linux从入门到放弃", "Java：学不会"],
+    bookpage: ''
   },
 
   onLoad: function() {
@@ -191,5 +192,95 @@ Page({
         url: '../shelf/shelf',
       })
     }
+  },
+
+  readFile: function(e) {
+    console.log(getApp().globalData.id)
+    wx.chooseMessageFile({
+      count: 1,
+      type: 'file',
+      success(res) {
+        const tempFilePath = res.tempFiles
+        console.log(tempFilePath[0].path)
+        wx.getFileSystemManager().readFile({
+          filePath: tempFilePath[0].path,
+          encoding: 'binary',
+          success: res => {
+            wx.cloud.callFunction({
+              name: 'transCoding',
+              data: {
+                text: res.data
+              }, 
+              success: res => {
+                console.log(res.result.str)
+                wx.navigateTo({
+                  url: '../readingPage/readingPage?content=' + res.result.str,
+                })
+              },
+
+            })
+        //     // wx.cloud.uploadFile({
+        //     //   cloudPath: 'books/4.txt',
+        //     //   filePath: tempFilePath[0].path,
+        //     //   success: function (res) {
+        //     //     console.log(res.fileID)
+        //     //   },
+        //     //   fail: console.err
+        //     // })
+          }
+        })
+      }
+    })
+    const db = wx.cloud.database()
+    const _ = db.command
+    db.collection('user').doc(getApp().globalData.id).update({
+      data: {
+        shelf: _.push(2)
+      },
+    })
+  },
+
+  downFile: function() {
+    console.log("hello")
+    // wx.downloadFile({
+    //   url: 'https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/books/example.txt?sign=577db942a4c228fce7f3a226a87aa20b&t=1557495557',
+    //   success: function(res) {
+    //     console.log("succeed")
+    //     const filePath = res.tempFilePath
+    //     console.log(res.fileContent)
+    //     wx.openDocument({
+    //       filePath,
+    //       success: function (res) {
+    //         console.log(res)
+    //       },
+    //       fail: console.err
+    //     })
+    //   }, 
+    //   fail: console.err
+    // })
+    wx.request({
+      url: 'https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/books/3.txt?sign=de1d3facb2909c6e6b89777be8443f26&t=1557729299',
+      data: {},
+      success: res => {
+        console.log("succeed")
+        //var query_clone = JSON.parse(decodeURIComponent(JSON.stringify(res.data)));
+        var query_clone = res.data
+        console.log(query_clone.toString("gb2312"))
+        wx.cloud.callFunction({
+          name: 'transCoding',
+          data: {
+            text: query_clone
+          },
+          success: res => {
+            console.log("succeed")
+            console.log(res)
+            wx.navigateTo({
+              url: '../readingPage/readingPage?content=' + query_clone,
+            })
+          },
+          fail: console.err
+        }) 
+      }
+    })
   }
 })

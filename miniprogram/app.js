@@ -1,15 +1,16 @@
 //app.js
 App({
 
-  globalData:{
-    openid: ""
+  globalData: {
+    openid: "",
+    id: "",
   },
 
-  onLaunch: function () {
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
+onLaunch: function() {
+  if (!wx.cloud) {
+    console.error('请使用 2.2.3 或以上的基础库以使用云能力')
+  } else {
+    wx.cloud.init({
         traceUser: true,
       }),
 
@@ -35,9 +36,9 @@ App({
               //   queryResult: JSON.stringify(res.data, null, 2)
               // })
               console.log('成功')
-              console.log("res.data.length:" + res.data.length)
+              console.log(res.data)
+              //const db = wx.cloud.database()
               if (res.data.length == 0) {
-                const db = wx.cloud.database()
                 db.collection('user').add({
                   data: {
                     userName: "",
@@ -48,14 +49,12 @@ App({
                     description: "",
                     noteId: [],
                     planId: [],
-                    time_counter: []
+                    time_counter: [],
+                    shelf: []
                   },
                   success: res => {
                     // 在返回结果中会包含新创建的记录的 _id
-                    this.setData({
-                      // counterId: res._id,
-                      // count: 1
-                    })
+                    this.globalData.id = res._id
                     wx.showToast({
                       title: '新增记录成功',
                     })
@@ -69,9 +68,9 @@ App({
                     console.error('[数据库] [新增记录] 失败：', err)
                   }
                 })
-
               } else {
-                //数据库中已经有这个用户了，那就什么也不做
+                //数据库中已经有这个用户了，获取ta的数据库id
+                this.globalData.id = res.data[0]._id
               }
             },
             fail: err => {
@@ -89,12 +88,12 @@ App({
         fail: err => {
           console.error('[云函数] [login] 调用失败', err)
           wx.navigateTo({
-            url:  '../deployFunctions/deployFunctions',
+            url: '../deployFunctions/deployFunctions',
           })
         }
       })
 
-    }
-
   }
+
+}
 })
