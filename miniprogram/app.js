@@ -46,7 +46,7 @@ onLaunch: function() {
                     bookId_collection: [],
                     bookId_favorite: [],
                     checkin_days: [],
-                    description: "",
+                    description: "点击头像设置个性签名",
                     noteId: [],
                     planId: [],
                     time_counter: [],
@@ -81,9 +81,9 @@ onLaunch: function() {
               console.log('[数据库] [查询记录] 失败')
             }
           })
-          wx.navigateTo({
-            url: '../index/index',
-          })
+          // wx.navigateTo({
+          //   url: '../index/index',
+          // })
         },
         fail: err => {
           console.error('[云函数] [login] 调用失败', err)

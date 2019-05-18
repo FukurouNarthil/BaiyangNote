@@ -1,23 +1,15 @@
 <view class='container'>
   <view class='container_card'>
-    <view class='usr_info'>
-      <view class='usr_name'>
-        <view wx:if="{{logFlag}}" class="usr_name_text">
+    <view wx:if="{{logFlag}}" class="usr_name_text">
+      <view class='usr_info'>
+        <view class='usr_name'>
           <text>{{userName}}</text>
         </view>
-        <view wx:else >
-        <button 
-          open-type="getUserInfo" 
-          bindgetuserinfo="onGetUserInfo"
-          class="login_button"
-        >点我登录</button>
+        <image class='usr_avatar' src="{{avatarUrl}}" bindtap='toEditPage'></image>
+        <view class='usr_sign'>
+          <text>{{description}}</text>
         </view>
       </view>
-      <image class='usr_avatar' src="{{avatarUrl}}" bindtap='toEditPage'></image>
-      <view class='usr_sign'>
-        <text>Hello World!</text>
-      </view>
-    </view>
 
     <!--个人信息下方的可跳转子页面-->
     <view class='sub_page_containter'>
@@ -32,6 +24,13 @@
           </view>
         </view>
       </block>
+    </view>
+    </view>
+    <view wx:else>
+      <view class='login'>
+      <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="login_button">点击登录</button>
+      <text class='login_hint'>登录即可享受笔记、排行等功能噢~</text>
+      </view>
     </view>
   </view>
 </view>

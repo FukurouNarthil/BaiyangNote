@@ -13,7 +13,8 @@
     "pages/me/collection/collection",
     "pages/me/ranking/ranking",
     "pages/shelf/shelf",
-    "pages/readingPage/readingPage"
+    "pages/readingPage/readingPage",
+    "pages/infoEdit/infoEdit"
   ],
   "window": {
     "backgroundColor": "#eeeeee",

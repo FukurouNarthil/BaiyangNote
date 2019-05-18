@@ -38,23 +38,12 @@ page {
   color: #486a00;
   border-bottom: #486A00 1px solid;
   width: 84%;
-  height: 130rpx;
+  height: 120rpx;
   font-size: 50rpx;
-  position: relative;
   display: flex;
-  justify-content: center;
-}
-.usr_name_text {
-  position: absolute;
-  top: 60rpx;
-}
-
-.login_button{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: #486A00;
-  color:#486A00;
-
+  flex-direction: column-reverse;
+  justify-content: end;
+  align-items: center;
 }
 
 .usr_avatar{
@@ -104,4 +93,21 @@ page {
 .sub_page .button {
   width: 190rpx;
   height: 65rpx;
+}
+
+.login {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #768f40;
+  font-size: 28rpx;
+}
+.login_button{
+  width: 210rpx;
+  height: 90rpx;
+  margin-bottom: 20rpx;
+  color: #768f40;
 }
