@@ -1,5 +1,23 @@
 <!--pages/me/collection/collection.wxml-->
-<view>
-  <text>Oops...\n</text>
-  <text>数据分析暂未开放噢</text>
+<view class='container'>
+  <view class='container-card'>
+    <view class='title'>设置</view>
+    <view class='usr_info'>
+      <image class='usr_avatar' src="{{avatarUrl}}" bindtap='uploadAvatar' mode='aspectFill'></image>
+      <view>
+        <view class='current_usr_name'>
+          <text>{{currentUserName}}</text>
+        </view>
+        <input placeholder='修改我的ID' placeholder-class='input_user_name' maxlength='20' bindinput='onGetInputUserName'></input>
+      </view>
+      <view class='usr_sign'>
+        <text class='des_title'>个性签名</text>
+        <textarea placeholder='输入新的个性签名' class='input_description'  bindinput='onGetInputDescription'></textarea>
+      </view>
+    </view>
+    <view class='btn-group'>
+      <image src='img/confirm.png' bindtap='confirmChange'></image>
+      <image src='img/back.png' bindtap='backToMyPage'></image>
+    </view>
+  </view>
 </view>

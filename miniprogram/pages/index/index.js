@@ -217,7 +217,7 @@ Page({
                   url: '../readingPage/readingPage?content=' + res.result.str,
                 })
               },
-
+              fail: console.err
             })
         //     // wx.cloud.uploadFile({
         //     //   cloudPath: 'books/4.txt',
