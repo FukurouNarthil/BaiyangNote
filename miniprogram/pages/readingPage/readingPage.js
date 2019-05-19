@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      content: options.content
+      content: decodeURIComponent(options.content)
     })
   },
 

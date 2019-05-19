@@ -24,34 +24,7 @@ Page({
       })
       return
     }
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
-
-  },
-
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
+    
   },
 
   onGetOpenid: function() {
@@ -99,60 +72,9 @@ Page({
     }
   },
 
-  // 上传图片
-  doUpload: function() {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function(res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
-
   parseTime: function() {
     var hh = parseInt(this.data.time / 100 / 3600);
-    if(hh < 10) hh = '0' + hh;
+    if (hh < 10) hh = '0' + hh;
     var mm = parseInt(this.data.time / 100 / 60 % 60);
     if (mm < 10) mm = '0' + mm;
     var ss = parseInt(this.data.time % 6000 / 100);
@@ -183,7 +105,7 @@ Page({
   },
 
   redirectTo: function(e) {
-    if(e.currentTarget.dataset.page == "timer"){
+    if (e.currentTarget.dataset.page == "timer") {
       wx.switchTab({
         url: '../calendar/calendar',
       })
@@ -197,38 +119,74 @@ Page({
   readFile: function(e) {
     console.log(getApp().globalData.id)
     wx.chooseMessageFile({
-      count: 1,
+      count: 9,
       type: 'file',
       success(res) {
+        console.log(res)
         const tempFilePath = res.tempFiles
-        console.log(tempFilePath[0].path)
-        wx.getFileSystemManager().readFile({
-          filePath: tempFilePath[0].path,
-          encoding: 'binary',
-          success: res => {
-            wx.cloud.callFunction({
-              name: 'transCoding',
-              data: {
-                text: res.data
-              }, 
-              success: res => {
-                console.log(res.result.str)
-                wx.navigateTo({
-                  url: '../readingPage/readingPage?content=' + res.result.str,
-                })
-              },
-              fail: console.err
-            })
-        //     // wx.cloud.uploadFile({
-        //     //   cloudPath: 'books/4.txt',
-        //     //   filePath: tempFilePath[0].path,
-        //     //   success: function (res) {
-        //     //     console.log(res.fileID)
-        //     //   },
-        //     //   fail: console.err
-        //     // })
-          }
-        })
+        var filePath = tempFilePath[0].path
+        var fileName = tempFilePath[0].name
+        console.log(filePath.match(/\.[^.]+?$/)[0])
+        if (filePath.match(/\.[^.]+?$/)[0] == '.txt') {
+          wx.cloud.uploadFile({
+            cloudPath: app.globalData.id + '/' + fileName,
+            filePath: tempFilePath[0].path,
+            success: function(res) {
+              console.log(res.fileID)
+              const db = wx.cloud.database()
+              const _ = db.command
+              db.collection('bookCollection').add({
+                data: {
+                  bookImage: '',
+                  bookName: fileName,
+                  bookOwner: app.globalData.id,
+                  bookFileId: res.fileID
+                },
+                success: res => {
+                  // 在返回结果中会包含新创建的记录的 _id
+                  this.globalData.id = res._id
+                  console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+                  db.collection('user').doc(app.globalData.id).update({
+                    data: {
+                      shelf: _push(fileName)
+                    }
+                  })
+                },
+                fail: err => {
+                  console.error('[数据库] [新增记录] 失败：', err)
+                }
+              })
+            },
+            fail: console.err
+          })
+          // wx.getFileSystemManager().readFile({
+          //   filePath: tempFilePath[0].path,
+          //   encoding: 'binary',
+          //   success: res => {
+          //     wx.cloud.callFunction({
+          //       name: 'transCoding',
+          //       data: {
+          //         text: res.data
+          //       },
+          //       success: res => {
+          //         console.log(res.result.str)
+          //         wx.navigateTo({
+          //           url: '../readingPage/readingPage?content=' + res.result.str,
+          //         })
+          //       },
+          //       fail: console.err
+          //     })
+          //   }
+          // })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '只能上传txt文件！',
+          })
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
       }
     })
     const db = wx.cloud.database()
@@ -241,45 +199,15 @@ Page({
   },
 
   downFile: function() {
-    console.log("hello")
-    // wx.downloadFile({
-    //   url: 'https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/books/example.txt?sign=577db942a4c228fce7f3a226a87aa20b&t=1557495557',
-    //   success: function(res) {
-    //     console.log("succeed")
-    //     const filePath = res.tempFilePath
-    //     console.log(res.fileContent)
-    //     wx.openDocument({
-    //       filePath,
-    //       success: function (res) {
-    //         console.log(res)
-    //       },
-    //       fail: console.err
-    //     })
-    //   }, 
-    //   fail: console.err
-    // })
     wx.request({
-      url: 'https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/books/3.txt?sign=de1d3facb2909c6e6b89777be8443f26&t=1557729299',
+      url: 'https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/988c1b1b5cdb76171244641b3f4ffe7b/%E6%95%85%E4%BA%8B%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89.txt?sign=362e20dd6526faa4fa79f2a22c1f6878&t=1558236849',
       data: {},
       success: res => {
         console.log("succeed")
-        //var query_clone = JSON.parse(decodeURIComponent(JSON.stringify(res.data)));
         var query_clone = res.data
-        console.log(query_clone.toString("gb2312"))
-        wx.cloud.callFunction({
-          name: 'transCoding',
-          data: {
-            text: query_clone
-          },
-          success: res => {
-            console.log("succeed")
-            console.log(res)
-            wx.navigateTo({
-              url: '../readingPage/readingPage?content=' + query_clone,
-            })
-          },
-          fail: console.err
-        }) 
+        wx.navigateTo({
+          url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone),
+        })
       }
     })
   }
