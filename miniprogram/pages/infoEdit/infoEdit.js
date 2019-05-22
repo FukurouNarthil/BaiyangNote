@@ -91,7 +91,7 @@ Page({
             console.log(filePath)
             // 上传头像，获取URL
             wx.cloud.uploadFile({
-              cloudPath: 'userAvatars/' + app.globalData.id + '/avatar' + filePath.match(/\.[^.]+?$/)[0],
+              cloudPath: app.globalData.id + '/avatar' + filePath.match(/\.[^.]+?$/)[0],
               filePath: filePath,
               success: res => {
                 // get resource ID
@@ -142,5 +142,7 @@ Page({
   },
 
   // 返回信息页
-
+  backToMyPage: function () {
+    wx.navigateBack()
+  }
 })

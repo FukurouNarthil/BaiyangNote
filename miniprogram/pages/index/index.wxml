@@ -28,7 +28,7 @@
                 <view class='books-display'>
                   <block wx:for="{{latest_books}}" wx:key="*that">
                     <view wx:if="{{index<2}}">
-                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;"  bindtap='readFile' data-bookname='{{item}}'>
+                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;"  bindtap='downFile' data-bookname='{{item}}'>
                         <text>{{item}}</text>
                       </view>
                     </view>
