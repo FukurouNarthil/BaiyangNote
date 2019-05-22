@@ -13,18 +13,28 @@ Page({
     isClick: 0,
     time: 0,
     displayTime: '00:00:00',
-    latest_books: ["高等数学", "Python编程", "Linux从入门到放弃", "Java：学不会"],
-    bookpage: ''
+    latest_books: [],
+    bookpage: '',
+    tempFileUrl: []
   },
 
   onLoad: function() {
+    var that = this
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
       })
       return
     }
-    
+    app.getUserInfo().then(function(res) {
+      console.log(res)
+      var shelf = res.data.shelf
+      that.setData({
+        latest_books: shelf
+      })
+      console.log(that.data.latest_books)
+      that.getBookContent(0)
+    })
   },
 
   onGetOpenid: function() {
@@ -116,16 +126,60 @@ Page({
     }
   },
 
+  getBookContent: function(k) {
+    var that = this
+    var temp = that.data.latest_books[k]
+    if (k == that.data.latest_books.length) {
+      return
+    } else {
+      const db = wx.cloud.database()
+      const _ = db.command
+      // 根据书名和用户ID在bookCollection中找到fileID
+      db.collection('bookCollection').where({
+        bookName: _.eq(temp),
+        bookOwner: app.globalData.id
+      }).get({
+        success: res => {
+          // console.log(res.data)
+          var fileID = res.data.reverse()[0].bookFileId
+          // console.log(fileID)
+          // 根据fileID换取https地址
+          wx.cloud.getTempFileURL({
+            fileList: [fileID],
+            success: res => {
+              // get temp file URL
+              // console.log(res.fileList)
+              var data = "tempFileUrl[" + k + "]"
+              that.setData({
+                [data]: {
+                  name: temp,
+                  fileUrl: res.fileList[0].tempFileURL
+                }
+              })
+              console.log(that.data.tempFileUrl)
+              k++
+              return that.getBookContent(k)
+            },
+            fail: err => {
+              // handle error
+            }
+          })
+        },
+        fail: console.err
+      })
+    }
+  },
+
   readFile: function(e) {
     console.log(getApp().globalData.id)
     wx.chooseMessageFile({
-      count: 9,
+      count: 1,
       type: 'file',
       success(res) {
         console.log(res)
         const tempFilePath = res.tempFiles
         var filePath = tempFilePath[0].path
-        var fileName = tempFilePath[0].name
+        const fileName = tempFilePath[0].name
         console.log(filePath.match(/\.[^.]+?$/)[0])
         if (filePath.match(/\.[^.]+?$/)[0] == '.txt') {
           wx.cloud.uploadFile({
@@ -144,11 +198,10 @@ Page({
                 },
                 success: res => {
                   // 在返回结果中会包含新创建的记录的 _id
-                  this.globalData.id = res._id
-                  console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+                  console.log(fileName)
                   db.collection('user').doc(app.globalData.id).update({
                     data: {
-                      shelf: _push(fileName)
+                      shelf: _.push(fileName)
                     }
                   })
                 },
@@ -189,18 +242,26 @@ Page({
         }
       }
     })
-    const db = wx.cloud.database()
-    const _ = db.command
-    db.collection('user').doc(getApp().globalData.id).update({
-      data: {
-        shelf: _.push(2)
-      },
-    })
+    // const db = wx.cloud.database()
+    // const _ = db.command
+    // db.collection('user').doc(getApp().globalData.id).update({
+    //   data: {
+    //     shelf: _.push(2)
+    //   },
+    // })
   },
 
-  downFile: function() {
+  downFile: function(e) {
+    console.log(e)
+    var that = this
+    var fileUrlList = that.data.tempFileUrl
+    var name = e.currentTarget.dataset.bookname
+    var url = fileUrlList.find(function(x) {
+      return x.name === name
+    }).fileUrl
+    console.log(url)
     wx.request({
-      url: 'https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/988c1b1b5cdb76171244641b3f4ffe7b/%E6%95%85%E4%BA%8B%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89.txt?sign=362e20dd6526faa4fa79f2a22c1f6878&t=1558236849',
+      url: url,
       data: {},
       success: res => {
         console.log("succeed")

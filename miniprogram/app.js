@@ -9,37 +9,36 @@ App({
   },
 
   onLaunch: function() {
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
+
+  },
+
+  getUserInfo: function(id) {
+    var that = this
+    return new Promise(function(resolve, reject) {
+
       wx.cloud.init({
           traceUser: true,
         }),
-
         // 调用云函数得到用户的openid
         wx.cloud.callFunction({
           name: 'login',
           data: {},
           success: res => {
             console.log('[云函数] [login] user openid: ', res.result.openid)
-            this.globalData.openid = res.result.openid
-            this.openid = res.result.openid
-            console.log('this.globalData是: ', this.globalData)
+            that.globalData.openid = res.result.openid
+            that.openid = res.result.openid
+            console.log('that.globalData是: ', that.globalData)
             //与数据库进行比对，插入一条初始化的用户记录
             const db = wx.cloud.database()
             // 查询一下数据库中有没有这个用户
-            console.log("Here", this.globalData)
+            console.log("Here", that.globalData)
             db.collection('user').where({
-              // _openid: this.globalData.openid
-              _openid: db.command.eq(this.globalData.openid)
+              // _openid: that.globalData.openid
+              _openid: db.command.eq(that.globalData.openid)
             }).get({
               success: res => {
-                // this.setData({
-                //   queryResult: JSON.stringify(res.data, null, 2)
-                // })
                 console.log('成功')
                 console.log(res.data)
-                //const db = wx.cloud.database()
                 if (res.data.length == 0) {
                   db.collection('user').add({
                     data: {
@@ -56,7 +55,7 @@ App({
                     },
                     success: res => {
                       // 在返回结果中会包含新创建的记录的 _id
-                      this.globalData.id = res._id
+                      that.globalData.id = res._id
                       wx.showToast({
                         title: '新增记录成功',
                       })
@@ -72,13 +71,13 @@ App({
                   })
                 } else {
                   //数据库中已经有这个用户了，获取ta的数据库id
-                  this.globalData.id = res.data[0]._id
+                  that.globalData.id = res.data[0]._id
                   wx.getSetting({
                     success: res => {
                       console.log(res)
                       if (res.authSetting['scope.userInfo']) {
-                        this.globalData.logFlag = true
-                        db.collection('user').doc(this.globalData.id).get({
+                        that.globalData.logFlag = true
+                        db.collection('user').doc(that.globalData.id).get({
                           success: res => {
                             console.log('成功')
                             console.log(res.data)
@@ -88,8 +87,15 @@ App({
                             } else {
                               shelf = res.data.shelf
                             }
-                            this.globalData.shelf = shelf
-                            console.log(this.globalData.shelf)
+                            var res = {
+                              status: 200,
+                              data: {
+                                shelf: shelf
+                              }
+                            }
+                            resolve(res)
+                            // that.globalData.shelf = shelf
+                            // console.log(that.globalData.shelf)
                           },
                           fail: err => {
                             wx.showToast({
@@ -125,7 +131,7 @@ App({
           }
         })
 
-    }
 
+    })
   }
 })
