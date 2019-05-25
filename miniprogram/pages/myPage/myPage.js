@@ -48,6 +48,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
     //MyPages加载的时候请求用户授权
     // 获取用户信息
     wx.getSetting({
@@ -122,6 +123,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 3
+      })
+    }
+
     const db = wx.cloud.database()
     db.collection('user').where({
       _openid: db.command.eq(app.globalData.openid)

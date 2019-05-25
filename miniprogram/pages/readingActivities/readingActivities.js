@@ -6,10 +6,10 @@ Page({
   data: {
     list:[{
       img:"./img/activity.png",
-      text:"新书速递"
+      text:"非遗阅读"
     },{
       img: "./img/activity.png",
-      text: "非遗阅读"     
+        text: "新书速递"     
     }, {
       img: "./img/activity.png",
       text: "爱心捐书" 
@@ -45,7 +45,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
+    }    
   },
 
   /**

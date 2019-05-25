@@ -1,1 +1,337 @@
 /* pages/me/collection/collection.wxss */
+page {
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+  background-color: #eeeeee;
+}
+
+.container{
+  height: 100%;
+  background-color: #eeeeee;
+  padding-top: 20px;
+}
+
+/* .container_card{
+  display: block;
+  height: 92%;
+  width: 72%;
+  border-radius: 5%;
+  box-shadow: 0px 0px 5px 5px #e7e7e7;
+  margin:5px;
+  padding-left: 10px;
+  padding-right: 10px;
+} */
+
+.container_card{
+  display: block;
+  height: 78%;
+  width: 80%;
+  /* border-radius: 5%; */
+  /* box-shadow: 0px 0px 5px 5px #e7e7e7; */
+  /* background-color: #ffffff; */
+  margin:5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.button_bar{
+  display: block;
+  height: 17%;
+  width: 80%;
+  /* border-radius: 5%; */
+  /* box-shadow: 0px 0px 5px 5px #e7e7e7; */
+  /* background-color: #ffffff; */
+  margin:10px;
+  padding-left: 10px;
+  padding-right: 10px;  
+}
+
+.move_button_box{
+  height:100%;
+  width:50%;
+}
+
+.move_button{
+  height:100%;
+  width:80%;
+  margin:10px;
+}
+
+.container_img{
+  height:100%;
+  width:100%;
+}
+
+/* 
+.周 {
+  position: absolute;
+  left: 302px;
+  top: 921px;
+  width: 1125px;
+  height: 2436px;
+  z-index: 60;
+}
+.本周排名 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 59;
+}
+.第__________名 {
+  font-size: 72px;
+  font-family: "FZQKBYSJW";
+  color: rgb(125, 164, 124);
+  line-height: 0.827;
+  text-align: center;
+  position: absolute;
+  left: 708.754px;
+  top: 1824.28px;
+  z-index: 58;
+}
+._23 {
+  font-size: 72px;
+  font-family: "SimHei";
+  color: rgb(72, 106, 0);
+  line-height: 0.827;
+  text-align: center;
+  position: absolute;
+  left: 835.411px;
+  top: 1767.228px;
+  z-index: 57;
+}
+.在这一周里，你的阅读排名是_ {
+  font-size: 48px;
+  font-family: "FZQKBYSJW";
+  color: rgb(125, 164, 124);
+  line-height: 1.241;
+  text-align: center;
+  position: absolute;
+  left: 557.401px;
+  top: 1692.7px;
+  z-index: 56;
+}
+.喜欢的书看多久 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 54;
+}
+._30 {
+  font-size: 60px;
+  font-family: "SimHei";
+  color: rgb(72, 106, 0);
+  line-height: 0.993;
+  text-align: center;
+  position: absolute;
+  left: 933.736px;
+  top: 2298.71px;
+  z-index: 53;
+}
+.反反复复看了__________小时_ {
+  font-size: 48px;
+  font-family: "FZQKBYSJW";
+  color: rgb(125, 164, 124);
+  line-height: 1.241;
+  text-align: center;
+  position: absolute;
+  left: 617.72px;
+  top: 2356.435px;
+  z-index: 52;
+}
+.喜欢的书 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 50;
+}
+.《荆棘鸟》 {
+  font-size: 72px;
+  font-family: "SimHei";
+  color: rgb(72, 106, 0);
+  line-height: 0.827;
+  text-align: center;
+  position: absolute;
+  left: 691px;
+  top: 2223.568px;
+  z-index: 49;
+}
+.你最近似乎格外钟情于_ {
+  font-size: 48px;
+  font-family: "FZQKBYSJW";
+  color: rgb(125, 164, 124);
+  line-height: 1.241;
+  text-align: center;
+  position: absolute;
+  left: 629.913px;
+  top: 2090.203px;
+  z-index: 48;
+}
+.读了几小时 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 46;
+}
+._61 {
+  font-size: 60px;
+  font-family: "SimHei";
+  color: rgb(72, 106, 0);
+  line-height: 0.993;
+  text-align: center;
+  position: absolute;
+  left: 891.937px;
+  top: 1377.21px;
+  z-index: 45;
+}
+.总计阅读__________小时__ {
+  font-size: 48px;
+  font-family: "FZQKBYSJW";
+  color: rgb(125, 164, 124);
+  line-height: 1.241;
+  text-align: center;
+  position: absolute;
+  left: 667.952px;
+  top: 1436.228px;
+  z-index: 44;
+}
+.读了几本书 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 42;
+}
+._3 {
+  font-size: 60px;
+  font-family: "SimHei";
+  color: rgb(72, 106, 0);
+  line-height: 0.993;
+  text-align: center;
+  position: absolute;
+  left: 975.737px;
+  top: 1257.21px;
+  z-index: 41;
+}
+.本周，你阅读了______本书__ {
+  font-size: 48px;
+  font-family: "FZQKBYSJW";
+  color: rgb(125, 164, 124);
+  line-height: 1.241;
+  text-align: center;
+  position: absolute;
+  left: 619.546px;
+  top: 1315.084px;
+  z-index: 40;
+}
+._2个返回 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 38;
+}
+.返回 {
+  background-image: url("返回.png");
+  position: absolute;
+  left: 523px;
+  top: 3014px;
+  width: 250px;
+  height: 250px;
+  z-index: 36;
+}
+._2个继续 {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 34;
+}
+.继续 {
+  background-image: url("继续.png");
+  position: absolute;
+  left: 1011px;
+  top: 3014px;
+  width: 250px;
+  height: 250px;
+  z-index: 32;
+}
+.定制款高级背景x {
+  position: absolute;
+  left: -302px;
+  top: -921px;
+  width: 4197px;
+  height: 3460px;
+  z-index: 9;
+}
+.图层_6 {
+  background-image: url("图层 6.png");
+  opacity: 0.251;
+  position: absolute;
+  left: 1096px;
+  top: 1105px;
+  width: 552px;
+  height: 625px;
+  z-index: 8;
+}
+.图层_6 {
+  background-image: url("图层 6.png");
+  opacity: 0.251;
+  position: absolute;
+  left: -230px;
+  top: 2062px;
+  width: 942px;
+  height: 778px;
+  z-index: 7;
+}
+.图层_5 {
+  background-image: url("图层 5.png");
+  opacity: 0.329;
+  position: absolute;
+  left: 432px;
+  top: 1069px;
+  width: 152px;
+  height: 129px;
+  z-index: 6;
+}
+.图层_5 {
+  background-image: url("图层 5.png");
+  opacity: 0.329;
+  position: absolute;
+  left: 701px;
+  top: 2423px;
+  width: 601px;
+  height: 564px;
+  z-index: 5;
+}
+.圆角矩形_1 {
+  border-radius: 60px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 10px 32px 8px rgba(4, 4, 4, 0.2);
+  position: absolute;
+  left: 418px;
+  top: 1068px;
+  width: 909px;
+  height: 1874px;
+  z-index: 4;
+}
+.图层_1 {
+  background-image: url("图层 1.png");
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1125px;
+  height: 2436px;
+  z-index: 2;
+} */
