@@ -33,12 +33,12 @@
                 <view wx:else>
                   <block wx:for="{{latest_books}}" wx:key="*that">
                     <view wx:if="{{index<2}}">
-                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;" bindtap='downFile' data-bookname='{{item}}'>
+                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;" bindtap='openBook' data-bookname='{{item}}'>
                         <text>{{item}}</text>
                       </view>
                     </view>
                     <view wx:else>
-                      <view class='display' style='left:{{(index%2)*270}}rpx; top:330rpx;' bindtap='downFile' data-bookname='{{item}}'>
+                      <view class='display' style='left:{{(index%2)*270}}rpx; top:330rpx;' bindtap='openBook' data-bookname='{{item}}'>
                         <text>{{item}}</text>
                       </view>
                     </view>

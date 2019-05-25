@@ -18,6 +18,7 @@ Page({
     bookcount: 0,
     bookpage: '',
     tempFileUrl: [],
+    tempFilePath: '',
     totalTime: 0
   },
 
@@ -117,7 +118,7 @@ Page({
     const _ = db.command
     db.collection('user').doc(app.globalData.id).get({
       success: res => {
-        var time = parseInt(res.data.time_counter) + that.data.totalTime 
+        var time = parseInt(res.data.time_counter) + that.data.totalTime
         db.collection('user').doc(app.globalData.id).update({
           data: {
             time_counter: _.set(time)
@@ -132,12 +133,12 @@ Page({
     var h = parseInt(t[0])
     var m = parseInt(t[1])
     var s = parseInt(t[2])
-    return h*3600 + m*60 + s
+    return h * 3600 + m * 60 + s
   },
 
-  getShelf:function() {
+  getShelf: function() {
     var that = this
-    app.getUserInfo().then(function (res) {
+    app.getUserInfo().then(function(res) {
       console.log(res)
       var shelf = res.data.shelf
       var latest = res.data.shelf
@@ -149,67 +150,69 @@ Page({
         latest_books: latest
       })
       console.log(that.data.latest_books)
-      that.getBookContent(0)
+      wx.hideLoading()
     })
   },
 
+  // 跳转至打卡日历或书架
   redirectTo: function(e) {
+    var that = this
     if (e.currentTarget.dataset.page == "timer") {
       wx.switchTab({
         url: '../calendar/calendar',
       })
     } else {
       wx.navigateTo({
-        url: '../shelf/shelf',
+        url: '../shelf/shelf?shelf=' + that.data.shelf,
       })
     }
   },
 
-  getBookContent: function(k) {
+  // 打开书本
+  openBook: function(e) {
     var that = this
-    var temp = that.data.latest_books[k]
-    if (k == that.data.latest_books.length) {
-      wx.hideLoading()
-      return
-    } else {
-      const db = wx.cloud.database()
-      const _ = db.command
-      // 根据书名和用户ID在bookCollection中找到fileID
-      db.collection('bookCollection').where({
-        bookName: _.eq(temp),
-        bookOwner: app.globalData.id
-      }).get({
-        success: res => {
-          // console.log(res.data)
-          var fileID = res.data.reverse()[0].bookFileId
-          // console.log(fileID)
-          // 根据fileID换取https地址
-          wx.cloud.getTempFileURL({
-            fileList: [fileID],
-            success: res => {
-              // get temp file URL
-              // console.log(res.fileList)
-              var data = "tempFileUrl[" + k + "]"
-              that.setData({
-                [data]: {
-                  name: temp,
-                  fileUrl: res.fileList[0].tempFileURL
-                }
-              })
-              console.log(that.data.tempFileUrl)
-              k++
-              return that.getBookContent(k)
-            },
-            fail: err => {
-              // handle error
-            }
-          })
-        },
-        fail: console.err
-      })
-    }
+    var name = e.currentTarget.dataset.bookname
+    const db = wx.cloud.database()
+    const _ = db.command
+    // 根据书名和用户ID在bookCollection中找到fileID
+    db.collection('bookCollection').where({
+      bookName: _.eq(name),
+      bookOwner: app.globalData.id
+    }).get({
+      success: res => {
+        console.log(res.data)
+        var fileID = res.data.reverse()[0].bookFileId
+        // console.log(fileID)
+        // 根据fileID换取https地址
+        wx.cloud.getTempFileURL({
+          fileList: [fileID],
+          success: res => {
+            // get temp file URL
+            console.log(res.fileList)
+            var data = res.fileList[0].tempFileURL
+            wx.request({
+              url: data,
+              data: {},
+              success: res => {
+                console.log("succeed")
+                var query_clone = res.data
+                wx.navigateTo({
+                  url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone) + '&title=' + name,
+                })
+              }
+            })
+
+          },
+          fail: err => {
+            // handle error
+          }
+        })
+      },
+      fail: console.err
+    })
   },
 
+  // 上传书本
   readFile: function(e) {
     console.log(getApp().globalData.id)
     wx.chooseMessageFile({
@@ -265,26 +268,4 @@ Page({
       }
     })
   },
-
-  downFile: function(e) {
-    console.log(e)
-    var that = this
-    var fileUrlList = that.data.tempFileUrl
-    var name = e.currentTarget.dataset.bookname
-    var url = fileUrlList.find(function(x) {
-      return x.name === name
-    }).fileUrl
-    console.log(url)
-    wx.request({
-      url: url,
-      data: {},
-      success: res => {
-        console.log("succeed")
-        var query_clone = res.data
-        wx.navigateTo({
-          url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone) + '&title=' + name,
-        })
-      }
-    })
-  }
 })
