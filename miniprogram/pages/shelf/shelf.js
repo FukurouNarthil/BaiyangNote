@@ -1,4 +1,6 @@
 // pages/shelf/shelf.js
+const app = getApp()
+
 Page({
 
   /**
@@ -33,7 +35,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var that = this
+    var shelf = app.globalData.shelf
+    that.setData({
+      books_1: shelf.slice(3),
+      books_2: shelf.slice(3, 6),
+      books_3: shelf.slice()
+    })
   },
 
   /**

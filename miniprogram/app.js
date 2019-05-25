@@ -81,12 +81,7 @@ App({
                           success: res => {
                             console.log('成功')
                             console.log(res.data)
-                            var shelf = []
-                            if (res.data.shelf.length > 4) {
-                              shelf = res.data.shelf.slice(3)
-                            } else {
-                              shelf = res.data.shelf
-                            }
+                            var shelf = res.data.shelf
                             var res = {
                               status: 200,
                               data: {
@@ -94,8 +89,6 @@ App({
                               }
                             }
                             resolve(res)
-                            // that.globalData.shelf = shelf
-                            // console.log(that.globalData.shelf)
                           },
                           fail: err => {
                             wx.showToast({
