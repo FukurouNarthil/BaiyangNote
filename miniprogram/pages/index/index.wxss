@@ -51,6 +51,16 @@ page {
   transform: translate(-50%, -50%);
 }
 
+.upload {
+  height: 60rpx;
+  width: 60rpx;
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  font-size: 38rpx;
+  transform: translate(-50%, -50%);
+}
+
 .link {
   height: 30rpx;
   width: 180rpx;
@@ -105,6 +115,14 @@ page {
   position: absolute;
   top: 18%;
   left: 5%;
+}
+.noReading {
+  width: 300rpx;
+  height: 90rpx;
+  margin-top: 20vh;
+  margin-left: 25%; 
+  margin-bottom: 20rpx;
+  color: #768f40;
 }
 .display {
   width: 230rpx;

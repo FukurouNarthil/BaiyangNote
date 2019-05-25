@@ -8,14 +8,17 @@ Page({
     imgUrl: 'images/timerFrame.png',
     previousMargin: 30,
     nextMargin: 30,
-    idx: 1,
+    idx: 0,
     current: 1,
     isClick: 0,
     time: 0,
     displayTime: '00:00:00',
+    shelf: [],
     latest_books: [],
+    bookcount: 0,
     bookpage: '',
-    tempFileUrl: []
+    tempFileUrl: [],
+    totalTime: 0
   },
 
   onLoad: function() {
@@ -26,15 +29,10 @@ Page({
       })
       return
     }
-    app.getUserInfo().then(function(res) {
-      console.log(res)
-      var shelf = res.data.shelf
-      that.setData({
-        latest_books: shelf
-      })
-      console.log(that.data.latest_books)
-      that.getBookContent(0)
+    wx.showLoading({
+      title: '加载中',
     })
+    that.getShelf()
   },
 
   onGetOpenid: function() {
@@ -105,12 +103,53 @@ Page({
   },
 
   stopTimer: function() {
+    var that = this
     clearInterval(interval);
     interval = null;
     this.setData({
       isClick: 0,
       time: 0,
+      totalTime: that.calcTotal(that.data.displayTime),
       displayTime: '00:00:00'
+    })
+    console.log(that.data.totalTime)
+    const db = wx.cloud.database()
+    const _ = db.command
+    db.collection('user').doc(app.globalData.id).get({
+      success: res => {
+        var time = parseInt(res.data.time_counter) + that.data.totalTime 
+        db.collection('user').doc(app.globalData.id).update({
+          data: {
+            time_counter: _.set(time)
+          }
+        })
+      }
+    })
+  },
+
+  calcTotal: function(n) {
+    var t = n.split(':')
+    var h = parseInt(t[0])
+    var m = parseInt(t[1])
+    var s = parseInt(t[2])
+    return h*3600 + m*60 + s
+  },
+
+  getShelf:function() {
+    var that = this
+    app.getUserInfo().then(function (res) {
+      console.log(res)
+      var shelf = res.data.shelf
+      var latest = res.data.shelf
+      if (shelf.length > 4) {
+        latest = shelf.slice(3)
+      }
+      that.setData({
+        bookcount: shelf.length,
+        latest_books: latest
+      })
+      console.log(that.data.latest_books)
+      that.getBookContent(0)
     })
   },
 
@@ -130,6 +169,7 @@ Page({
     var that = this
     var temp = that.data.latest_books[k]
     if (k == that.data.latest_books.length) {
+      wx.hideLoading()
       return
     } else {
       const db = wx.cloud.database()
@@ -204,6 +244,7 @@ Page({
                       shelf: _.push(fileName)
                     }
                   })
+                  that.getShelf()
                 },
                 fail: err => {
                   console.error('[数据库] [新增记录] 失败：', err)
@@ -212,25 +253,6 @@ Page({
             },
             fail: console.err
           })
-          // wx.getFileSystemManager().readFile({
-          //   filePath: tempFilePath[0].path,
-          //   encoding: 'binary',
-          //   success: res => {
-          //     wx.cloud.callFunction({
-          //       name: 'transCoding',
-          //       data: {
-          //         text: res.data
-          //       },
-          //       success: res => {
-          //         console.log(res.result.str)
-          //         wx.navigateTo({
-          //           url: '../readingPage/readingPage?content=' + res.result.str,
-          //         })
-          //       },
-          //       fail: console.err
-          //     })
-          //   }
-          // })
         } else {
           wx.showToast({
             icon: 'none',
@@ -242,13 +264,6 @@ Page({
         }
       }
     })
-    // const db = wx.cloud.database()
-    // const _ = db.command
-    // db.collection('user').doc(getApp().globalData.id).update({
-    //   data: {
-    //     shelf: _.push(2)
-    //   },
-    // })
   },
 
   downFile: function(e) {
@@ -267,7 +282,7 @@ Page({
         console.log("succeed")
         var query_clone = res.data
         wx.navigateTo({
-          url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone),
+          url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone) + '&title=' + name,
         })
       }
     })
