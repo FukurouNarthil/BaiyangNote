@@ -18,28 +18,34 @@
                 <image class="startButton" src="images/startButton.png" bindtap="startTimer"></image>
               </view>
               <view wx:else>
-                <image class="startButton" src="images/startButton_selected.png" bindtap="stopTimer"></image>
+                <image class="startButton" src="images/stopButton_s.png" bindtap="stopTimer"></image>
               </view>
               <text class="link" bindtap="redirectTo" data-page="{{item}}">查看打卡记录</text>
             </view>
             <view wx:else>
               <!--书本展示区-->
-                <text class='title'>最近阅读</text>
-                <view class='books-display'>
+              <text class='title'>最近阅读</text>
+              <image src='images/addBook.png' class='upload' bindtap='readFile'></image>
+              <view class='books-display'>
+                <view class='noReading' wx:if="{{!bookcount}}">
+                  <text>尚无最近阅读哦~</text>
+                </view>
+                <view wx:else>
                   <block wx:for="{{latest_books}}" wx:key="*that">
                     <view wx:if="{{index<2}}">
-                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;"  bindtap='downFile' data-bookname='{{item}}'>
+                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;" bindtap='downFile' data-bookname='{{item}}'>
                         <text>{{item}}</text>
                       </view>
                     </view>
-                    <view>
-                      <view class='display' style='left:{{(index%2)*270}}rpx; top:330rpx;'  bindtap='downFile' data-bookname='{{item}}'>
+                    <view wx:else>
+                      <view class='display' style='left:{{(index%2)*270}}rpx; top:330rpx;' bindtap='downFile' data-bookname='{{item}}'>
                         <text>{{item}}</text>
                       </view>
                     </view>
                   </block>
                 </view>
-                <text class='link' bindtap='redirectTo' data-page='{{item}}'>前往书架</text>
+              </view>
+              <text class='link' bindtap='redirectTo' data-page='{{item}}'>前往书架</text>
             </view>
           </view>
         </swiper-item>

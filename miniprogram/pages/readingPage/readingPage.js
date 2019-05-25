@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: '',
     content: ''
   },
 
@@ -14,6 +15,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
+      title: options.title,
       content: decodeURIComponent(options.content)
     })
   },

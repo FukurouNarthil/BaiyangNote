@@ -1,2 +1,6 @@
 <!--pages/readingPage/readingPage.wxml-->
-<text>{{content}}</text>
+<view class='container'>
+  <text class='title'>{{title}}</text>
+  <text class='content'>{{content}}</text>
+</view>
+

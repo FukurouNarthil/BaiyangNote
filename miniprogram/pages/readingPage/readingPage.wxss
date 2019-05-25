@@ -1,1 +1,13 @@
 /* pages/readingPage/readingPage.wxss */
+.container {
+  padding: 20rpx
+}
+
+.title{
+  font-size: 28rpx;
+}
+
+.content {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
