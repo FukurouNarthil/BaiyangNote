@@ -1,4 +1,3 @@
-<!--pages/me/collection/collection.wxml-->
 <view class="container">
   <view class="container_card">
     <!--标题-->
@@ -13,7 +12,22 @@
     </view>
     <!--list-->
     <view class="list" >
-      <view class="list_item" wx:for="{{list}}">123</view>
+      <view class="list_item" wx:for="{{list}}">
+        <view class="small_leaf_part">
+          <image src="./img/leaf.png" class="small_leaf" mode="scaleToFill"></image>
+        </view>
+        <view class="except_small_leaf_part">
+          <image class="list_item_img" src="{{item.src}}"></image>
+          <view class="text_container">
+            <text class="list_item_bookTitle">{{item.title}}</text>
+            <text class="list_item_bookAuthor">{{item.author}}</text>     
+            <text class="list_item_bookTime">{{item.collect_time}}</text>       
+          </view>
+        </view>
+      </view>
     </view>
+    <!-- <view>
+      <image class="button" bintap="" src=""></image>
+    </view> -->
   </view>
 </view>

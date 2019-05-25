@@ -12,8 +12,22 @@
     </view>
     <!--list-->
     <view class="list" >
-      <view class="list_item" wx:for="{{list}}">123</view>
+      <view class="list_item" wx:for="{{list}}">
+        <image class="list_item_img" src="{{item.src}}"></image>
+        <view class="text_container">
+          <text class="list_item_bookTitle">{{item.title}}</text>
+          <text class="list_item_bookNote">{{item.abstract}}</text>          
+        </view>
+      </view>
     </view>
+    <!-- <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox" wx:for="{{items}}">
+        <checkbox value="{{item.name}}" checked="{{item.checked}}" />
+        {{item.value}}
+      </label>
+    </checkbox-group> -->
+    <!-- <view>
+      <image class="button" bintap="" src=""></image>
+    </view> -->
   </view>
 </view>
-

@@ -11,11 +11,26 @@
       <view class="username">{{userName}}</view>
     </view>
     <!--list-->
+    <!-- <view class="list" >
+      <view class="list_item" wx:for="{{list}}">
+        <image class="list_item_img" src="{{item.src}}"></image>
+        <view class="text_container">
+          <text class="list_item_bookTitle">{{item.title}}</text>
+          <text class="list_item_bookNote">{{item.abstract}}</text>          
+        </view>
+      </view>
+    </view> -->
     <view class="list" >
-      <view class="list_item" wx:for="{{list}}">123</view>
+      <checkbox-group bindchange="checkboxChange">
+        <label style="display:flex;" class="checkbox_bar" wx:for="{{items}}">
+          <checkbox value="{{item.plan}}" checked="{{item.checked}}" />
+          <text class="plan">{{item.plan}}</text>
+          <text class="time">{{item.time}}</text>
+        </label>
+      </checkbox-group>
     </view>
-    <view>
+    <!-- <view>
       <image class="button" bintap="" src=""></image>
-    </view>
+    </view> -->
   </view>
 </view>
