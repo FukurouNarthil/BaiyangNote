@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/readingActivities/readingActivities",
-    "pages/calendar/calendar",
     "pages/myPage/myPage",
+    "pages/calendar/calendar",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -14,46 +14,49 @@
     "pages/me/ranking/ranking",
     "pages/shelf/shelf",
     "pages/readingPage/readingPage",
-    "pages/infoEdit/infoEdit"
+    "pages/infoEdit/infoEdit",
+    "pages/me/note/noteEdit/noteEdit",
+    "pages/me/plan/planEdit/planEdit"
   ],
-  "window": {
-    "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#eeeeee",
-    "navigationBarTitleText": "白杨手账",
-    "navigationBarTextStyle": "black"
-  },
   "tabBar": {
+    "custom":true,
     "color": "#486A00",
     "selectedColor": "#3A5103",
     "backgroundColor": "#eeeeee",
     "borderStyle": "white",
     "list": [
       {
+        "pagePath": "pages/index/index",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/selected_home.png",
-        "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
+        "pagePath": "pages/readingActivities/readingActivities",     
         "iconPath": "images/recommend.png",
         "selectedIconPath": "images/selected_recommend.png",
-        "pagePath": "pages/readingActivities/readingActivities",
         "text": "阅读活动"
       },
       {
+        "pagePath": "pages/calendar/calendar", 
         "iconPath": "images/calendar.png",
         "selectedIconPath": "images/selected_calendar.png",
-        "pagePath": "pages/calendar/calendar",
         "text": "打卡日历"
       },
       {
+        "pagePath": "pages/myPage/myPage",        
         "iconPath": "images/me.png",
         "selectedIconPath": "images/selected_me.png",
-        "pagePath": "pages/myPage/myPage",
         "text": "我的"
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "window": {
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#eeeeee",
+    "navigationBarTitleText": "白杨手账",
+    "navigationBarTextStyle": "black"
+  }
 }
+

@@ -14,5 +14,8 @@
     <view class="list" >
       <view class="list_item" wx:for="{{list}}">123</view>
     </view>
+    <view>
+      <image class="button" bintap="" src=""></image>
+    </view>
   </view>
 </view>

@@ -74,6 +74,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
   onLoad: function () {
+
     this.onQueryDays();
     this._setCalendarData(this.data.year, this.data.month);
     console.log("对日历进行初始化完成");
@@ -124,7 +125,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+    }
   },
 
   /**

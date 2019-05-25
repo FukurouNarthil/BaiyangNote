@@ -1,7 +1,7 @@
 @import '../../component/wxSearch/wxSearch';
 
 page {
-  height: 100%;
+  height: 92%;
   font-size: 32rpx;
   line-height: 1.6;
   background-color: #eeeeee;
@@ -21,8 +21,8 @@ page {
   box-shadow: 0px 0px 5px 5px #e7e7e7;
   background-color: #ffffff;
   margin:5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .title_row{
@@ -30,6 +30,7 @@ page {
   width:100%;
   margin-top:20px;
   margin-bottom:20px;
+  margin-left:10px; 
 }
 
 .title{
@@ -121,6 +122,8 @@ page {
 
 .gridview-item:active {
     background-color: #ECECEC;
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
 }  
 .gridview-item_img {
     position: relative;
@@ -150,8 +153,7 @@ page {
 .page_row{  
   display: flex;  
   flex-direction: row ;
-  margin-top:10rpx;
-  margin-bottom:10rpx;   
+  margin: 10px;
 } 
 
 .search{  
@@ -166,7 +168,7 @@ page {
 }   
  
 .searchicon {  
-  margin-left: 90rpx;  
+  margin-left: 53px;  
   margin-top: 10rpx; 
   position: absolute;  
   left:25rpx;  
