@@ -156,14 +156,13 @@ Page({
 
   // 跳转至打卡日历或书架
   redirectTo: function(e) {
-    var that = this
     if (e.currentTarget.dataset.page == "timer") {
       wx.switchTab({
         url: '../calendar/calendar',
       })
     } else {
       wx.navigateTo({
-        url: '../shelf/shelf?shelf=' + that.data.shelf,
+        url: '../shelf/shelf',
       })
     }
   },
@@ -248,6 +247,7 @@ Page({
                     }
                   })
                   that.getShelf()
+                  that.onShow()
                 },
                 fail: err => {
                   console.error('[数据库] [新增记录] 失败：', err)

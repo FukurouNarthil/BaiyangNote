@@ -10,7 +10,7 @@
 	},
 	"appid": "wx7bbd276a8c1e7c42",
 	"projectname": "BaiyangNote",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.2",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
