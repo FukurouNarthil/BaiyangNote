@@ -114,7 +114,7 @@ page {
   width:100%;
   background-color: #e5e5e5;
   margin-top: 10px;
-  border-radius: 4%;
+  border-radius: 3%;
   display: flex;
   float:left;
 }
