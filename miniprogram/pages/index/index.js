@@ -156,6 +156,9 @@ Page({
 
   // 打开书本
   openBook: function(e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     var name = e.currentTarget.dataset.bookname
     const db = wx.cloud.database()
@@ -182,6 +185,7 @@ Page({
               success: res => {
                 console.log("succeed")
                 var query_clone = res.data
+                wx.hideLoading()
                 wx.navigateTo({
                   url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone) + '&title=' + name,
                 })
