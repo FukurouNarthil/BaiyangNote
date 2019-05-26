@@ -30,9 +30,6 @@ Page({
       })
       return
     }
-    wx.showLoading({
-      title: '加载中',
-    })
     that.getShelf()
   },
 
@@ -137,6 +134,9 @@ Page({
   },
 
   getShelf: function() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     app.getUserInfo().then(function(res) {
       console.log(res)
