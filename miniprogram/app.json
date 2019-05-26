@@ -3,22 +3,15 @@
     "pages/index/index",
     "pages/readingActivities/readingActivities",
     "pages/myPage/myPage",
-<<<<<<< HEAD
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-=======
     "pages/calendar/calendar",
->>>>>>> 29e453a767bc5b8e1bc89ad5f510efc5d2ca5d4d
     "pages/me/collection/collection",
     "pages/me/ranking/ranking",
     "pages/shelf/shelf",
     "pages/readingPage/readingPage",
     "pages/infoEdit/infoEdit",
     "pages/me/note/noteEdit/noteEdit",
-    "pages/me/plan/planEdit/planEdit"
+    "pages/me/plan/planEdit/planEdit",
+    "pages/eventPage/eventPage"
   ],
   "tabBar": {
     "custom":true,

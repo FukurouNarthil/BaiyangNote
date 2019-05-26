@@ -92,5 +92,11 @@ Page({
     this.setData({
       focus: true
     })
+  },
+
+  redirctToEventPage: function () {
+    wx.navigateTo({
+      url: '../eventPage/eventPage?url=' + 'https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw',
+    })
   }
 })

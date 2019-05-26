@@ -1,4 +1,6 @@
 // pages/readingPage/readingPage.js
+var interval = null;
+
 Page({
 
   /**
@@ -6,7 +8,8 @@ Page({
    */
   data: {
     title: '',
-    content: ''
+    content: '',
+    time: ''
   },
 
   /**
@@ -21,17 +24,40 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (!interval && this.data.time != 0) {
+      interval = setInterval(() => {
+        this.setData({
+          time: this.data.time + 1,
+          displayTime: this.parseTime(this.data.time)
+        })
+      }, 10);
+    }
+  },
 
+  onHide: function () {
+    var that = this
+    clearInterval(interval);
+    interval = null;
+    console.log(that.data.time)
+    const db = wx.cloud.database()
+    const _ = db.command
+    db.collection('user').doc(app.globalData.id).get({
+      success: res => {
+        var time = parseInt(res.data.time_counter) + that.data.time
+        db.collection('user').doc(app.globalData.id).update({
+          data: {
+            time_counter: _.set(time)
+          }
+        })
+      }
+    })
+    this.setData({
+      isClick: 0,
+      time: 0,
+    })
   },
 
   getContent: function (e) {

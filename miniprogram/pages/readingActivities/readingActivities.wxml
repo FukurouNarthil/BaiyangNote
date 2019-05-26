@@ -18,7 +18,7 @@
     <!--双列活动列表|上拉刷新-->
     <view class="gridview">
       <view class="gridview-item" wx:for="{{list}}" wx:key="">
-        <image class='gridview-item_img' src="{{item.img}}"></image>
+        <image class='gridview-item_img' src="{{item.img}}" bindtap='redirctToEventPage'></image>
         <view class='gridview-item_text'>{{item.text}}</view>
       </view>
     </view>
