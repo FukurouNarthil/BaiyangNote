@@ -1,5 +1,7 @@
 <!--pages/me/ranking/ranking.wxml-->
-<view>
-  <text>Oops...\n</text>
-  <text>这个页面暂未开放噢</text>
+<view class="container">
+  <view class='container_card'>
+    <text>Oops...\n</text>
+    <text>这个页面暂未开放噢</text>
+  </view>
 </view>

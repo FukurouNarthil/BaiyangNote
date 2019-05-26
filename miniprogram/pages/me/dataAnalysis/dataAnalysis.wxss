@@ -35,33 +35,68 @@ page {
   padding-right: 10px;
 }
 
+.container_img{
+  display:flex;
+  height:100%;
+  width:100%;
+  justify-content: center;
+  position:relative;
+  left:0px;
+  top:0px;
+}
+
+.content1{
+  position:absolute;
+  width:80%;
+  height:60%;
+  left:100px;
+  top:100px;
+  color:#486A00;
+}
+
+.content2{
+  position:absolute;
+  width:80%;
+  height:60%;
+  left:100px;
+  top:100px;
+  color:#eeeeee;
+}
+
+.content3{
+  position:absolute;
+  width:80%;
+  height:60%;
+  left:100px;
+  top:100px;
+  color:#486A00;
+}
+
 .button_bar{
-  display: block;
+  display: flex;
   height: 17%;
-  width: 80%;
-  /* border-radius: 5%; */
-  /* box-shadow: 0px 0px 5px 5px #e7e7e7; */
-  /* background-color: #ffffff; */
-  margin:10px;
-  padding-left: 10px;
-  padding-right: 10px;  
+  width: 80%; 
+  flex-direction: row;
+  justify-content: center;
 }
 
 .move_button_box{
   height:100%;
   width:50%;
+  padding-top: 5px;
+  /* padding-bottom: 15px; */
+  padding-left: 30px;
+  padding-right: 30px;
+  /* flex-grow: 1; */
 }
+
 
 .move_button{
-  height:100%;
-  width:80%;
-  margin:10px;
+  height:80px;
+  width:80px;
 }
 
-.container_img{
-  height:100%;
-  width:100%;
-}
+
 
 /* 
 .周 {

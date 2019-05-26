@@ -1,24 +1,122 @@
 <!--pages/databaseGuide/databaseGuide.wxml-->
 <view class='container'>
   <!-- <view class='container_card' style="background:url('./img/bg1.png')"> -->
-  <view class='container_card'>
+  <block wx:if="{{step == 1}}" class="page1">
+    <view class='container_card'>
 
-    <image src="./img/bg1.png" mode="scaleToFill" class="container_img">
-      <!-- <text>111</text> -->
-    </image>
-
-  </view>
-
-  <view class="button_bar">
-    <view class="move_button_box">
-      <image class='move_button' src='./img/back.png' bindtap='redirectToSubPage'>
+      <image src="./img/bg1.png" mode="scaleToFill" class="container_img" bindtap='test'>
       </image>
+
+      <view class="content1">
+        <text>本周，你阅读了x本书\n</text>
+        <text>总计阅读x小时\n</text>
+        <text>在这一周里，你的阅读排名是\n</text>
+        <text>第x名\n</text>
+
+        <text>你最近似乎格外钟情于\n</text>
+        <text>xxx\n</text>
+        <text>反反复复看了x个小时\n</text>
+      </view>
+
     </view>
-    <view class="move_button_box">
-      <image class='move_button' src='./img/next.png' bindtap='redirectToSubPage'>
+
+    <view class="button_bar">
+      <view class="move_button_box" bindtap="goBack">
+        <image class='move_button' src='./img/back.png' >
+        </image>
+      </view>
+      <view class="move_button_box">
+        <image class='move_button' src='./img/next.png' bindtap="nextStep">
+        </image>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{step == 2}}">
+    <view class='container_card'>
+
+      <image src="./img/bg2.png" mode="scaleToFill" class="container_img">
       </image>
+
+      <view class="content2">
+        <text>这个月，你阅读了x本书\n</text>
+        <text>总计阅读x小时\n</text>
+        <text>你在x号这天睡得很晚\n</text>
+        <text>那是x：xx\n</text>
+        <text>你的书友们已入梦乡，你仍在阅读\n</text>
+
+        <text>你的一条想法获得了xxx个赞同\n</text>
+        <text>这是xxx活动中的想法\n</text>
+      </view>
+
     </view>
-  </view>
+
+    <view class="button_bar">
+      <view class="move_button_box">
+        <image class='move_button' src='./img/prev.png' bindtap='prevStep'>
+        </image>
+      </view>
+      <view class="move_button_box">
+        <image class='move_button' src='./img/next.png' bindtap='nextStep'>
+        </image>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{step == 3}}">
+    <view class='container_card'>
+
+      <image src="./img/bg3.png" mode="scaleToFill" class="container_img">
+      </image>
+
+      <view class="content3">
+        <text>你在xxx年xx月加入了白杨手札\n</text>
+        <text>截至今日，你的书架上放过了xx本书\n</text>
+        <text>你的累计阅读时间达到了xxx小时\n</text>
+        <text>超过了xx%的书友\n</text>
+
+        <text>这三本书是你的心头好\n</text>
+        <text>《xxx》\n</text>
+        <text>《xxx》\n</text>
+        <text>《xxx》\n</text>
+
+        <text>过去的日子，感谢有你\n</text>
+        <text>未来，还愿继续书海为伴\n</text>        
+      </view>
+
+    </view>
+
+    <view class="button_bar">
+      <view class="move_button_box">
+        <image class='move_button' src='./img/prev.png' bindtap='prevStep'>
+        </image>
+      </view>
+      <view class="move_button_box">
+        <!-- <image class='move_button' src='./img/next.png' bindtap='nextStep'>
+        </image> -->
+      </view>
+    </view>
+  </block>  
+
+  <!-- <block wx:if="{{step == 1}}">
+    <view class="button_bar">
+      <view class="move_button_box">
+          <image class='move_button' src='./img/next.png' bindtap='test'>
+          </image>
+      </view>
+    </view>
+
+    <view class="button_bar">
+      <view class="move_button_box" bindtap="prevStep">
+        <image class='move_button' src='./img/back.png' >
+        </image>
+      </view>
+      <view class="move_button_box">
+        <image class='move_button' src='./img/next.png' bindtap="nextStep">
+        </image>
+      </view>
+    </view>
+  </block> -->
 
 </view>
 

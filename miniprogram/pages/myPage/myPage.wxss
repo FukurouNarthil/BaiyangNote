@@ -5,6 +5,11 @@ page {
   background-color: #eeeeee;
 }
 
+.page1{
+  height:100%;
+  width:100%;
+}
+
 .container{
   height: 100%;
   background-color: #eeeeee;
