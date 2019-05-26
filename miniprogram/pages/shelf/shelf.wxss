@@ -48,6 +48,14 @@ page {
   left: 5%;
 }
 
+.books {
+  width: 530rpx;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .books_row {
   width: 520rpx;
   height: 32%;
@@ -59,23 +67,27 @@ page {
 .book {
   width: 168rpx;
   height: 100%;
-  background-color: rgb(255, 224, 184);
   /* position: absolute; */
-  color: rgb(187, 113, 3);
+  color: #486a00;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:space-between;
   text-align: center;
   font-size: 25rpx;
 }
 .cover {
   width: 168rpx;
-  height: 85%;
-  background-color: brown;
+  height: 82%;
 }
 .book_title {
-
+  width: 168rpx;
+  height: 18%;
   font-size: 25rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  overflow: hidden; 
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .more {

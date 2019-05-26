@@ -88,6 +88,7 @@ App({
                                 shelf: shelf
                               }
                             }
+                            that.globalData.shelf = shelf
                             resolve(res)
                           },
                           fail: err => {

@@ -7,28 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    books_1: [{
-        'name': '红楼梦'
-      },{
-        'name': '三国演义'
-      }, {
-        'name': '西游记'
-      }],
-      books_2:[{
-        'name': '水浒传'
-      }, {
-        'name': '百年孤独'
-      }, {
-        'name': '霍乱时期的爱情'
-      }], 
-      books_3: [{
-        'name': '伊利亚特'
-      }, {
-        'name': '奥德赛'
-      }, {
-        'name': '聊斋志异'
-      }
-    ]
+    books: [],
+    cover: 'images/cover.png'
   },
 
   /**
@@ -37,11 +17,47 @@ Page({
   onLoad: function(options) {
     var that = this
     var shelf = app.globalData.shelf
-    that.setData({
-      books_1: shelf.slice(3),
-      books_2: shelf.slice(3, 6),
-      books_3: shelf.slice()
-    })
+    console.log(shelf)
+    var count = 0
+    var data = []
+    if (shelf.length <= 3) {
+      for (var j = 0; j < 3; j++) {
+        if (j >= shelf.length) {
+          var obj = {
+            'name': '',
+          }
+        } else {
+          var obj = {
+            'name': shelf[j],
+            'cover': that.data.cover
+          }
+        }
+        console.log(obj)
+        data.push(obj)
+      }
+      var n = "books[" + count + "]"
+      that.setData({
+        [n]: data
+      })
+    } else {
+      for (var i = 0; i < shelf.length; i + 3) {
+        var m = shelf.slice(i, i + 4)
+        var data = []
+        for (var j = 0; j < 3; j++) {
+          var obj = {
+            'name': m[j],
+            'cover': that.data.cover
+          }
+          console.log(obj)
+          data.push(obj)
+        }
+        var n = "books[" + count + "]"
+        that.setData({
+          [n]: data
+        })
+      }
+    }
+    console.log(that.data.books)
   },
 
   /**
@@ -59,20 +75,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
@@ -86,10 +88,46 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+  openBook: function (e) {
+    var that = this
+    var name = e.currentTarget.dataset.name
+    const db = wx.cloud.database()
+    const _ = db.command
+    // 根据书名和用户ID在bookCollection中找到fileID
+    db.collection('bookCollection').where({
+      bookName: _.eq(name),
+      bookOwner: app.globalData.id
+    }).get({
+      success: res => {
+        console.log(res.data)
+        var fileID = res.data.reverse()[0].bookFileId
+        // console.log(fileID)
+        // 根据fileID换取https地址
+        wx.cloud.getTempFileURL({
+          fileList: [fileID],
+          success: res => {
+            // get temp file URL
+            console.log(res.fileList)
+            var data = res.fileList[0].tempFileURL
+            wx.request({
+              url: data,
+              data: {},
+              success: res => {
+                console.log("succeed")
+                var query_clone = res.data
+                wx.navigateTo({
+                  url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone) + '&title=' + name,
+                })
+              }
+            })
 
-  }
+          },
+          fail: err => {
+            // handle error
+          }
+        })
+      },
+      fail: console.err
+    })
+  },
 })
