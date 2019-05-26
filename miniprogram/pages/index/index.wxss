@@ -1,7 +1,7 @@
 @import "./weui.wxss";
 
 page {
-  height: 100%;
+  height: 92%;
   font-size: 32rpx;
   line-height: 1.6;
   background-color: #eeeeee;

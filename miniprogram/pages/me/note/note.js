@@ -5,8 +5,24 @@ Page({
    */
   data: {
     avatarUrl: "../../myPage/img/flower.jpg",
-    userName: "未未酱",
-    list: [{ txt1: "111" }, { txt1: "222" }, { txt1: "333" }, { txt1: "444" }]
+    userName: "你的名字",
+    list: [{
+        src: "./img/book_note.png",
+        title: "《书名书名书名》",
+      abstract:"读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要" 
+      }, { 
+        src: "./img/book_note.png",
+        title: "《书名书名书名》",
+        abstract:"读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要"
+      }, {
+        src: "./img/book_note.png",
+        title: "《书名书名书名》",
+        abstract:"读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要"
+      }, {
+        src: "./img/book_note.png",
+        title: "《书名书名书名》",
+        abstract:"读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要读书笔记摘要"
+      }]
   },
 
   /**

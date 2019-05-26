@@ -5,8 +5,19 @@ Page({
    */
   data: {
     avatarUrl: "../../myPage/img/flower.jpg",
-    userName: "未未酱",
-    list: [{ txt1: "111" }, { txt1: "222" }, { txt1: "333" }, { txt1: "444" }]
+    userName: "你的名字",
+    items: [
+      { plan:"今天的计划是 ",time:"2019-05-01" },
+      { plan: "今天的计划是", time: "2019-05-01", checked: 'true' },
+      { plan: "今天的计划是  ", time: "2019-05-01" },
+      { plan: "今天的计划是 ", time: "2019-05-01" },
+      { plan: "今天的计划是 ", time: "2019-05-01" },
+      { plan: "今天的计划是 ", time: "2019-05-01" },
+    ]
+  },
+
+  checkboxChange(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
   },
 
   /**

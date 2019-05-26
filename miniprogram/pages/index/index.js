@@ -23,6 +23,7 @@ Page({
   },
 
   onLoad: function() {
+
     var that = this
     if (!wx.cloud) {
       wx.redirectTo({
@@ -55,6 +56,14 @@ Page({
   },
 
   onShow: function() {
+
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+    
     if (!interval && this.data.time != 0) {
       interval = setInterval(() => {
         this.setData({
