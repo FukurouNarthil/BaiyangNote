@@ -1,4 +1,7 @@
 // pages/readingPage/readingPage.js
+const app = getApp()
+var interval = null;
+
 Page({
 
   /**
@@ -6,66 +9,76 @@ Page({
    */
   data: {
     title: '',
-    content: ''
+    content: '',
+    time: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     console.log(options)
     this.setData({
       title: options.title,
       content: decodeURIComponent(options.content)
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    if (!interval) {
+      interval = setInterval(() => {
+        this.setData({
+          time: this.data.time + 1,
+        })
+        // console.log(that.data.time)
+      }, 1000);
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
-
+    var that = this
+    that.stopTimer()
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
-
+    var that = this
+    that.stopTimer()
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  getContent: function (e) {
+    console.log(e)
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  addNote: function (e) {
+    var that = this
+    console.log(e)
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  stopTimer: function () {
+    var that = this
+    clearInterval(interval);
+    interval = null;
+    const db = wx.cloud.database()
+    const _ = db.command
+    db.collection('user').doc(app.globalData.id).get({
+      success: res => {
+        var time = parseInt(res.data.time_counter) + that.data.time
+        console.log(time)
+        db.collection('user').doc(app.globalData.id).update({
+          data: {
+            time_counter: _.set(time)
+          }
+        })
+        that.setData({
+          isClick: 0,
+          time: 0,
+        })
+      },
+      fail: console.err
+    })
   }
 })

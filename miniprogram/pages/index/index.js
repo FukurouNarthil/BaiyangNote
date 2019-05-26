@@ -23,7 +23,6 @@ Page({
   },
 
   onLoad: function() {
-
     var that = this
     if (!wx.cloud) {
       wx.redirectTo({
@@ -31,31 +30,7 @@ Page({
       })
       return
     }
-    wx.showLoading({
-      title: '加载中',
-    })
     that.getShelf()
-  },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
   },
 
   onShow: function() {
@@ -146,6 +121,9 @@ Page({
   },
 
   getShelf: function() {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     app.getUserInfo().then(function(res) {
       console.log(res)
@@ -178,6 +156,9 @@ Page({
 
   // 打开书本
   openBook: function(e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     var name = e.currentTarget.dataset.bookname
     const db = wx.cloud.database()
@@ -204,6 +185,7 @@ Page({
               success: res => {
                 console.log("succeed")
                 var query_clone = res.data
+                wx.hideLoading()
                 wx.navigateTo({
                   url: '../readingPage/readingPage?content=' + encodeURIComponent(query_clone) + '&title=' + name,
                 })

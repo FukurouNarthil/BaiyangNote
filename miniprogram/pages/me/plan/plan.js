@@ -1,11 +1,13 @@
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl: "../../myPage/img/flower.jpg",
-    userName: "你的名字",
+    avatarUrl: "",
+    userName: "",
     items: [
       { plan:"今天的计划是 ",time:"2019-05-01" },
       { plan: "今天的计划是", time: "2019-05-01", checked: 'true' },
@@ -24,7 +26,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const db = wx.cloud.database()
+    db.collection('user').where({
+      _openid: db.command.eq(app.globalData.openid)
+    }).get({
+      success: res => {
+        console.log(res.data)
+        if (res.data[0].userName) {
+          this.setData({
+            avatarUrl: res.data[0].avatarUrl,
+            userName: res.data[0].userName,
+            description: res.data[0].description
+          })
+        }
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.log('[数据库] [查询记录] 失败')
+      }
+    })
   },
 
   /**
