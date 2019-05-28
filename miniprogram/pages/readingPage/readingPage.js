@@ -10,27 +10,25 @@ Page({
   data: {
     title: '',
     content: '',
+    clipboard: '',
     time: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this
     console.log(options)
     this.setData({
       title: options.title,
       content: decodeURIComponent(options.content)
     })
-    // 清空系统剪贴板
-    wx.setClipboardData({
-      data: '',
+    wx.getClipboardData({
       success(res) {
-        wx.getClipboardData({
-          success(res) {
-            console.log(res.data)
-          }
+        console.log(res.data)
+        that.setData({
+          clipboard: res.data
         })
       }
     })
@@ -39,36 +37,37 @@ Page({
         this.setData({
           time: this.data.time + 1,
         })
-        // console.log(that.data.time)
       }, 1000);
     }
   },
 
-  onHide: function () {
+  onHide: function() {
     var that = this
     that.stopTimer()
   },
 
-  onUnload: function () {
+  onUnload: function() {
     var that = this
     that.stopTimer()
   },
 
-  addNote: function (e) {
+  addNote: function(e) {
     var that = this
-    console.log(e)
+    // console.log(e)
     wx.getClipboardData({
       success(res) {
-        console.log(res.data)
-        if(res.data) {
+        // console.log(res.data)
+        // console.log(that.data.clipboard)
+        if (res.data != that.data.clipboard) {
           // 将剪贴板中的内容加入笔记
           const db = wx.cloud.database()
           const _ = db.command
+          const clip = res.data
           db.collection('note').add({
             data: {
               userID: app.globalData.id,
               bookName: that.data.title,
-              noteContent: res.data
+              noteContent: clip
             },
             success: res => {
               // 在返回结果中会包含新创建的记录的 _id
@@ -77,8 +76,8 @@ Page({
                   noteId: _.push(res._id)
                 },
               })
-              wx.setClipboardData({
-                data: '',
+              that.setData({
+                clipboard: clip
               })
             },
             fail: err => {
@@ -94,7 +93,7 @@ Page({
     })
   },
 
-  stopTimer: function () {
+  stopTimer: function() {
     var that = this
     clearInterval(interval);
     interval = null;
