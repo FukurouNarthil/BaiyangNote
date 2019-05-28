@@ -5,7 +5,7 @@
         <view class='usr_name'>
           <text>{{userName}}</text>
         </view>
-        <image class='usr_avatar' src="{{avatarUrl}}" bindtap='toEditPage'></image>
+        <image class='usr_avatar' src="{{avatarUrl}}" bindtap='toEditPage' mode='aspectFill'></image>
         <view class='usr_sign'>
           <text>{{description}}</text>
         </view>

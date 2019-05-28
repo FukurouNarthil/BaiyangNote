@@ -20,43 +20,11 @@ Page({
     console.log(shelf)
     var count = 0
     var data = []
-    if (shelf.length <= 3) {
-      for (var j = 0; j < 3; j++) {
-        if (j >= shelf.length) {
-          var obj = {
-            'name': '',
-          }
-        } else {
-          var obj = {
-            'name': shelf[j],
-            'cover': that.data.cover
-          }
-        }
-        console.log(obj)
-        data.push(obj)
-      }
-      var n = "books[" + count + "]"
-      that.setData({
-        [n]: data
-      })
-    } else {
-      for (var i = 0; i < shelf.length; i + 3) {
-        var m = shelf.slice(i, i + 4)
-        var data = []
-        for (var j = 0; j < 3; j++) {
-          var obj = {
-            'name': m[j],
-            'cover': that.data.cover
-          }
-          console.log(obj)
-          data.push(obj)
-        }
-        var n = "books[" + count + "]"
-        that.setData({
-          [n]: data
-        })
-      }
-    }
+
+    that.setData({
+      books: that.displayShelf(shelf)
+    })
+
     console.log(that.data.books)
   },
 
@@ -88,7 +56,49 @@ Page({
 
   },
 
-  openBook: function (e) {
+  displayShelf: function (s) {
+    var that = this
+    var length = s.length
+    var books = []
+    var count = 0
+    while(count < length) {
+      var data = []
+      if (count + 3 >= length) {
+        for (var j = 0; j < 3; j++) {
+          if (j+count >= length) {
+            var obj = {
+              'name': '',
+            }
+          } else {
+            var obj = {
+              'name': s[count + j],
+              'cover': that.data.cover
+            }
+          }
+          // console.log(obj)
+          data.push(obj)
+        }
+        books.push(data)
+      } else {
+        var m = s.slice(count, count + 3)
+        // console.log(m)
+        for (var j = 0; j < 3; j++) {
+          var obj = {
+            'name': m[j],
+            'cover': that.data.cover
+          }
+          // console.log(obj)
+          data.push(obj)
+        }
+        // console.log(data)
+        books.push(data)
+      }
+      count += 3
+    }
+    return books
+  },
+
+  openBook: function(e) {
     var that = this
     var name = e.currentTarget.dataset.name
     const db = wx.cloud.database()

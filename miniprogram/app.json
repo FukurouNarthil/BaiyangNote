@@ -14,7 +14,7 @@
     "pages/eventPage/eventPage"
   ],
   "tabBar": {
-    "custom":true,
+    "custom": true,
     "color": "#486A00",
     "selectedColor": "#3A5103",
     "backgroundColor": "#eeeeee",
@@ -27,19 +27,19 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/readingActivities/readingActivities",     
+        "pagePath": "pages/readingActivities/readingActivities",
         "iconPath": "images/recommend.png",
         "selectedIconPath": "images/selected_recommend.png",
         "text": "阅读活动"
       },
       {
-        "pagePath": "pages/calendar/calendar", 
+        "pagePath": "pages/calendar/calendar",
         "iconPath": "images/calendar.png",
         "selectedIconPath": "images/selected_calendar.png",
         "text": "打卡日历"
       },
       {
-        "pagePath": "pages/myPage/myPage",        
+        "pagePath": "pages/myPage/myPage",
         "iconPath": "images/me.png",
         "selectedIconPath": "images/selected_me.png",
         "text": "我的"
@@ -52,6 +52,6 @@
     "navigationBarBackgroundColor": "#eeeeee",
     "navigationBarTitleText": "白杨札记",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
-
