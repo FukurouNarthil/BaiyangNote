@@ -1,6 +1,6 @@
 <!--pages/readingPage/readingPage.wxml-->
 <view class='container'>
   <text class='title'>{{title}}</text>
-  <text class='content' selectable='true' bindtouchstart='getContent' bindtouchend='addNote'>{{content}}</text>
+  <text class='content' selectable='true' bindtouchstart='addNote'>{{content}}</text>
 </view>
 

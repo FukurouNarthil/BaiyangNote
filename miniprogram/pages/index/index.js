@@ -130,7 +130,7 @@ Page({
       var shelf = res.data.shelf
       var latest = res.data.shelf
       if (shelf.length > 4) {
-        latest = shelf.slice(3)
+        latest = shelf.slice(shelf.length - 4, shelf.length)
       }
       that.setData({
         bookcount: shelf.length,
@@ -204,6 +204,7 @@ Page({
 
   // 上传书本
   readFile: function(e) {
+    var that = this
     console.log(getApp().globalData.id)
     wx.chooseMessageFile({
       count: 1,
@@ -220,6 +221,12 @@ Page({
             filePath: tempFilePath[0].path,
             success: function(res) {
               console.log(res.fileID)
+              var latest = that.data.latest_books
+              latest.push(fileName)
+              console.log(latest)
+              that.setData({
+                latest_books: latest.slice(1, 5)
+              })
               const db = wx.cloud.database()
               const _ = db.command
               db.collection('bookCollection').add({
@@ -232,13 +239,12 @@ Page({
                 success: res => {
                   // 在返回结果中会包含新创建的记录的 _id
                   console.log(fileName)
+                  
                   db.collection('user').doc(app.globalData.id).update({
                     data: {
                       shelf: _.push(fileName)
                     }
                   })
-                  that.getShelf()
-                  that.onShow()
                 },
                 fail: err => {
                   console.error('[数据库] [新增记录] 失败：', err)

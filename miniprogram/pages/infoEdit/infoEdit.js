@@ -48,6 +48,7 @@ Page({
       success: function(res) {
         console.log(res)
         const tempFilePath = res.tempFilePaths[0]
+        console.log(tempFilePath.match(/\.[^.]+?$/))
         self.setData({
           avatarUrl: tempFilePath,
           newAvatarUrl: tempFilePath
