@@ -7,11 +7,13 @@
       <text class="title">阅读活动</text>
     </view>
     <!--搜索框-->
-    <view class='page_row' bindtap="suo">  
+    <!-- <view class='page_row' bindtap="suo">   -->
+    <view class='page_row'>
       <view class="search">  
         <view class="search_arr">  
-          <icon class="searchicon" size='15' type='search'></icon>  
-          <input class="searchText" disabled placeholder="请输入关键字" value="{{searchValue}}"/>  
+          <icon class="searchicon" size='15' type='search' bindtap='search'></icon>  
+          <!-- <input class="searchText" disabled placeholder="请输入关键字" value="{{searchValue}}"/>   -->
+          <input class="searchText" placeholder="请输入关键字" value="{{searchValue}}"/>            
         </view>
       </view>  
     </view>

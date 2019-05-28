@@ -5,22 +5,25 @@ Page({
    */
   data: {
     list:[{
-      img:"./img/activity.png",
+      img:"./img/cultureReading.png",
       text:"非遗阅读"
     },{
-      img: "./img/activity.png",
+        img: "./img/bookRecommendation.png",
+      text: "好书推荐"
+    }, {      
+      img: "./img/notOpen.png",
         text: "新书速递"     
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
       text: "爱心捐书" 
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
       text: "感想漂流"
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
       text: "图书交换"
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
       text: "猜你喜欢"
     }],
     focus: false,
@@ -98,5 +101,10 @@ Page({
     wx.navigateTo({
       url: '../eventPage/eventPage?url=' + 'https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw',
     })
+  },
+
+  search:function(){
+    console.log("qqq")
+    //点击搜索的时候，更新一个list，重新渲染页面
   }
 })
