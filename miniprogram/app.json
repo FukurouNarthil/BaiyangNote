@@ -9,6 +9,7 @@
     "pages/shelf/shelf",
     "pages/readingPage/readingPage",
     "pages/infoEdit/infoEdit",
+    "pages/me/note/note",
     "pages/me/note/noteEdit/noteEdit",
     "pages/me/plan/planEdit/planEdit",
     "pages/eventPage/eventPage"

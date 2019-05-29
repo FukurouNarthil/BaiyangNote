@@ -45,9 +45,9 @@ Page({
     // activityList:[],
     focus: false,
     inputValue: '',
-    searchValue:''
+    searchValue:'',
+    searchList: []
   },
-  searchList:[],
   /**
    * 生命周期函数--监听页面加载
    */
@@ -57,6 +57,7 @@ Page({
     this.setData({
       searchList: this.data.activityList
     })
+    that.getUserCollection()
   },
 
   /**
@@ -87,7 +88,7 @@ Page({
 
   getUserCollection: function () {
     var that = this
-    var list = that.data.activityList
+    var list = that.data.searchList
     var c = []
     const db = wx.cloud.database()
     db.collection('user').doc(app.globalData.id).get({
@@ -96,7 +97,7 @@ Page({
         for(var i = 0; i < c.length; i++) {
           for(var j = 0; j < list.length; j++) {
             if(c[i].name==list[j].text&&c[i].url==list[j].url) {
-              var item = "activityList[" + j + "].collected"
+              var item = "searchList[" + j + "].collected"
               that.setData({
                 [item]: 1
               })
@@ -104,6 +105,7 @@ Page({
             }
           }
         }
+        console.log(that.data.searchList)
       },
       fail: console.err
     })
@@ -134,11 +136,11 @@ Page({
       content: '确认收藏本活动',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
-          var item = "activityList[" + index + "].collected"
+          var item = "searchList[" + index + "].collected"
           that.setData({
             [item]: 1
           })
+          console.log(that.data.searchList)
           const db = wx.cloud.database()
           const _ = db.command
           db.collection('user').doc(app.globalData.id).update({
@@ -146,8 +148,45 @@ Page({
               bookId_collection: _.push(obj)
             })
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
+        } else if(res.cancel) {
+
+        }
+      }
+    })
+  },
+
+  rmCollection: function (e) {
+    var that = this
+    var index = e.currentTarget.dataset.index
+    var obj = {
+      'name': e.currentTarget.dataset.eventname,
+      'url': e.currentTarget.dataset.eventurl
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确认取消收藏',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var item = "searchList[" + index + "].collected"
+          that.setData({
+            [item]: 0
+          })
+          const db = wx.cloud.database()
+          const _ = db.command
+          db.collection('user').doc(app.globalData.id).get({
+            success: res => {
+              var c = res.data.bookId_collection
+              var i = c.indexOf(obj)
+              c.splice(i, 1)
+              console.log(c)
+              db.collection('user').doc(app.globalData.id).update({
+                data: ({
+                  bookId_collection: c
+                })
+              })
+            }
+          })
         }
       }
     })
@@ -175,12 +214,12 @@ Page({
   //搜索关键字匹配,返回一个匹配的list
   match:function(){
     var sList = []
-    for(var i in this.data.activityList){
+    for(var i in this.data.searchList){
       var re = new RegExp(this.data.searchValue)
-      if (re.test(this.data.activityList[i].text)){
+      if (re.test(this.data.searchList[i].text)){
         console.log(this.data.searchValue)
-        console.log(this.data.activityList[i])
-        sList.push(this.data.activityList[i])
+        console.log(this.data.searchList[i])
+        sList.push(this.data.searchList[i])
       }
     }
     console.log("sList:" + sList)    

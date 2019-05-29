@@ -9,13 +9,13 @@
     <!--搜索框-->
     <!-- <view class='page_row' bindtap="suo">   -->
     <view class='page_row'>
-      <view class="search">  
-        <view class="search_arr">  
-          <icon class="searchicon" size='15' type='search' bindtap='search'></icon>  
+      <view class="search">
+        <view class="search_arr">
+          <icon class="searchicon" size='15' type='search' bindtap='search'></icon>
           <!-- <input class="searchText" disabled placeholder="请输入关键字" value="{{searchValue}}"/>   -->
-          <input class="searchText" placeholder="请输入关键字" value="{{searchValue}}" bindinput="inputBind" bindconfirm='search'/>            
+          <input class="searchText" placeholder="请输入关键字" value="{{searchValue}}" bindinput="inputBind" bindconfirm='search' />
         </view>
-      </view>  
+      </view>
     </view>
     <!--双列活动列表|上拉刷新-->
     <view class="gridview">
@@ -24,7 +24,7 @@
         <view class='gridview-item_text'>
           <text>{{item.text}}</text>
           <view wx:if="{{item.collected}}">
-          <image src='img/collect_s.jpg' class='collect_icon' bindtap='addCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}'></image>
+            <image src='img/collect_s.jpg' class='collect_icon' bindtap='rmCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}'></image>
           </view>
           <view wx:else>
             <image src='img/collect.jpg' class='collect_icon' bindtap='addCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}'></image>
