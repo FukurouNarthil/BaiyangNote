@@ -7,17 +7,17 @@ Page({
    */
   data: {
     activityList: [{
-      img: "./img/cultureReading.jpg",
+      img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/cultureReading.png?sign=f322892f9cadb6de1879b7b31526cc6f&t=1559141459",
       text: "非遗阅读",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
       collected: 0
     }, {
-        img: "./img/bookRecommendation.png",
+        img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/bookRecommendation.png?sign=095cc12d5a5c203671e7da344d8d0e68&t=1559141019",
         text: "新书速递",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }, {
-        img: "./img/notOpen.png",
+        img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=9ae95b7863da7762474bc18087317b60&t=1559141521",
         text: "爱心捐书",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
@@ -42,6 +42,7 @@ Page({
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
       collected: 0
     }],
+    // activityList:[],
     focus: false,
     inputValue: '',
     searchValue:'',
@@ -52,9 +53,9 @@ Page({
    */
 
   onLoad: function(options) {
-    var that = this
-    that.setData({
-      searchList: that.data.activityList
+    this.getUserCollection()
+    this.setData({
+      searchList: this.data.activityList
     })
     that.getUserCollection()
   },

@@ -14,12 +14,19 @@
       <view class="username">{{userName}}</view>
     </view>
     <view class="list" >
-      <checkbox-group bindchange="checkboxChange">
-        <label style="display:flex;" class="checkbox_bar" wx:for="{{items}}">
-          <checkbox value="{{item.plan}}" checked="{{item.checked}}" />
-          <text class="plan">{{item.plan}}</text>
+      <checkbox-group bindchange="checkboxChange">    
+        <view style="display:flex;" class="checkbox_bar" wx:for="{{items}}" bindtap='editPlan'>    
+          <view catchtap='catchCheckboxChange'>
+            <checkbox value="{{item.plan}}" checked="{{item.checked}}" />
+          </view>
+          <block wx:if="{{!item.checked}}">
+            <text class="plan">{{item.plan}}</text>
+          </block>
+          <block wx:else>
+            <text class="plan_done">{{item.plan}}</text>
+          </block>
           <text class="time">{{item.time}}</text>
-        </label>
+      </view>
       </checkbox-group>
     </view>
     <!-- <view>

@@ -16,8 +16,8 @@
       </view>
     </view>
     <view class='btn-group'>
-      <image src='img/confirm.png' bindtap='confirmChange'></image>
       <image src='img/back.png' bindtap='backToMyPage'></image>
+      <image src='img/confirm.png' bindtap='confirmChange'></image>
     </view>
   </view>
 </view>

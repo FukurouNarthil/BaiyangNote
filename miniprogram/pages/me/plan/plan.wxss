@@ -187,10 +187,18 @@ page {
 
 }
 
+.plan_done{
+  font-size: 30rpx;
+  color:#a09c9c;
+  flex: 0.8; /* 重要 */
+  align-items:center;
+  text-decoration: line-through;
+
+}
+
 .time{
   font-size:25rpx;
   color:#919191;
   position: relative;
   align-items:center;
-
 }
