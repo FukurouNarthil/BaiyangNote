@@ -123,13 +123,11 @@ Page({
       'name': e.currentTarget.dataset.eventname,
       'url': e.currentTarget.dataset.eventurl
     }
-    console.log(obj)
     wx.showModal({
       title: '提示',
       content: '确认收藏本活动',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           var item = "activityList[" + index + "].collected"
           that.setData({
             [item]: 1
@@ -141,8 +139,6 @@ Page({
               bookId_collection: _.push(obj)
             })
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
@@ -180,8 +176,6 @@ Page({
               })
             }
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
