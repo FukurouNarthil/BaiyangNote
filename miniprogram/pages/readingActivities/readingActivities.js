@@ -148,6 +148,45 @@ Page({
     })
   },
 
+  rmCollection: function (e) {
+    var that = this
+    var index = e.currentTarget.dataset.index
+    var obj = {
+      'name': e.currentTarget.dataset.eventname,
+      'url': e.currentTarget.dataset.eventurl
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确认取消收藏',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var item = "activityList[" + index + "].collected"
+          that.setData({
+            [item]: 0
+          })
+          const db = wx.cloud.database()
+          const _ = db.command
+          db.collection('user').doc(app.globalData.id).get({
+            success: res => {
+              var c = res.data.bookId_collection
+              var i = c.indexOf(obj)
+              c.splice(i, 1)
+              console.log(c)
+              db.collection('user').doc(app.globalData.id).update({
+                data: ({
+                  bookId_collection: c
+                })
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
   // inputBind:function(event){
   //   this.setData({
   //       searchValue:event.detail.value
