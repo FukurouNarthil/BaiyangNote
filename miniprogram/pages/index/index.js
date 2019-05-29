@@ -53,7 +53,6 @@ Page({
   },
 
   onHide: function() {
-    console.log('onHide...')
     if (interval) {
       clearInterval(interval);
       interval = null;
@@ -126,17 +125,15 @@ Page({
     })
     var that = this
     app.getUserInfo().then(function(res) {
-      console.log(res)
       var shelf = res.data.shelf
       var latest = res.data.shelf
       if (shelf.length > 4) {
-        latest = shelf.slice(3)
+        latest = shelf.slice(shelf.length - 4, shelf.length)
       }
       that.setData({
         bookcount: shelf.length,
         latest_books: latest
       })
-      console.log(that.data.latest_books)
       wx.hideLoading()
     })
   },
@@ -171,7 +168,6 @@ Page({
       success: res => {
         console.log(res.data)
         var fileID = res.data.reverse()[0].bookFileId
-        // console.log(fileID)
         // 根据fileID换取https地址
         wx.cloud.getTempFileURL({
           fileList: [fileID],
@@ -183,7 +179,6 @@ Page({
               url: data,
               data: {},
               success: res => {
-                console.log("succeed")
                 var query_clone = res.data
                 wx.hideLoading()
                 wx.navigateTo({
@@ -204,6 +199,7 @@ Page({
 
   // 上传书本
   readFile: function(e) {
+    var that = this
     console.log(getApp().globalData.id)
     wx.chooseMessageFile({
       count: 1,
@@ -213,13 +209,17 @@ Page({
         const tempFilePath = res.tempFiles
         var filePath = tempFilePath[0].path
         const fileName = tempFilePath[0].name
-        console.log(filePath.match(/\.[^.]+?$/)[0])
         if (filePath.match(/\.[^.]+?$/)[0] == '.txt') {
           wx.cloud.uploadFile({
             cloudPath: app.globalData.id + '/' + fileName,
             filePath: tempFilePath[0].path,
             success: function(res) {
-              console.log(res.fileID)
+              var latest = that.data.latest_books
+              latest.push(fileName)
+              that.setData({
+                latest_books: latest.slice(1, 5)
+              })
+              app.globalData.shelf = latest.slice(1, 5)
               const db = wx.cloud.database()
               const _ = db.command
               db.collection('bookCollection').add({
@@ -231,14 +231,11 @@ Page({
                 },
                 success: res => {
                   // 在返回结果中会包含新创建的记录的 _id
-                  console.log(fileName)
                   db.collection('user').doc(app.globalData.id).update({
                     data: {
                       shelf: _.push(fileName)
                     }
                   })
-                  that.getShelf()
-                  that.onShow()
                 },
                 fail: err => {
                   console.error('[数据库] [新增记录] 失败：', err)
