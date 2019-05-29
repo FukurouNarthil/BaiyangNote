@@ -1,35 +1,42 @@
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    activityList:[{
-      img:"./img/cultureReading.png",
-      text:"非遗阅读"
-    },{
+    activityList: [{
+      img: "./img/cultureReading.png",
+      text: "非遗阅读",
+      url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+      collected: 0
+    }, {
         img: "./img/bookRecommendation.png",
-      text: "好书推荐"
-    }, {      
-      img: "./img/notOpen.png",
-        text: "新书速递"     
+        text: "新书速递",
+        url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+        collected: 0
     }, {
         img: "./img/notOpen.png",
-      text: "爱心捐书" 
+        text: "爱心捐书",
+        url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+        collected: 0
     }, {
         img: "./img/notOpen.png",
-      text: "感想漂流"
+        text: "感想漂流",
+        url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+        collected: 0
     }, {
         img: "./img/notOpen.png",
-      text: "图书交换"
+        text: "图书交换",
+        url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+        collected: 0
     }, {
         img: "./img/notOpen.png",
-      text: "猜你喜欢"
-
-      },{
-        img: "./img/activity.png",
-        text: "热门活动"
-      }],
+        text: "猜你喜欢",
+        url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+        collected: 0
+    }],
     focus: false,
     inputValue: '',
     searchValue:''
@@ -38,75 +45,106 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.setData({
-      searchList: this.data.activityList
+
+  onLoad: function(options) {
+    var that = this
+    that.getUserCollection()
+    that.setData({
+      searchList: that.data.activityList
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 1
       })
-    }    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
+  getUserCollection: function () {
+    var that = this
+    var list = that.data.activityList
+    var c = []
+    const db = wx.cloud.database()
+    db.collection('user').doc(app.globalData.id).get({
+      success: res=> {
+        c = res.data.bookId_collection
+        for(var i = 0; i < c.length; i++) {
+          for(var j = 0; j < list.length; j++) {
+            if(c[i].name==list[j].text&&c[i].url==list[j].url) {
+              var item = "activityList[" + j + "].collected"
+              that.setData({
+                [item]: 1
+              })
+              break
+            }
+          }
+        }
+      },
+      fail: console.err
+    })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  },
-
-  bindButtonTap: function () {
+  bindButtonTap: function() {
     this.setData({
       focus: true
     })
   },
 
-  redirctToEventPage: function () {
+  redirctToEventPage: function(e) {
     wx.navigateTo({
-      url: '../eventPage/eventPage?url=' + 'https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw',
+      url: '../eventPage/eventPage?url=' + e.currentTarget.dataset.eventurl,
+    })
+  },
+
+  addCollection: function(e) {
+    var that = this
+    var index = e.currentTarget.dataset.index
+    var obj = {
+      'name': e.currentTarget.dataset.eventname,
+      'url': e.currentTarget.dataset.eventurl
+    }
+    console.log(obj)
+    wx.showModal({
+      title: '提示',
+      content: '确认收藏本活动',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var item = "activityList[" + index + "].collected"
+          that.setData({
+            [item]: 1
+          })
+          const db = wx.cloud.database()
+          const _ = db.command
+          db.collection('user').doc(app.globalData.id).update({
+            data: ({
+              bookId_collection: _.push(obj)
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   },
 
