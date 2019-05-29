@@ -13,13 +13,13 @@
         <view class="search_arr">  
           <icon class="searchicon" size='15' type='search' bindtap='search'></icon>  
           <!-- <input class="searchText" disabled placeholder="请输入关键字" value="{{searchValue}}"/>   -->
-          <input class="searchText" placeholder="请输入关键字" value="{{searchValue}}"/>            
+          <input class="searchText" placeholder="请输入关键字" value="{{searchValue}}" bindinput="inputBind" bindconfirm='search'/>            
         </view>
       </view>  
     </view>
     <!--双列活动列表|上拉刷新-->
     <view class="gridview">
-      <view class="gridview-item" wx:for="{{list}}" wx:key="">
+      <view class="gridview-item" wx:for="{{searchList}}" wx:key="">
         <image class='gridview-item_img' src="{{item.img}}" bindtap='redirctToEventPage'></image>
         <view class='gridview-item_text'>{{item.text}}</view>
       </view>
