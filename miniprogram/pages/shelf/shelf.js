@@ -17,7 +17,6 @@ Page({
   onLoad: function(options) {
     var that = this
     var shelf = app.globalData.shelf
-    console.log(shelf)
     var count = 0
     var data = []
 
