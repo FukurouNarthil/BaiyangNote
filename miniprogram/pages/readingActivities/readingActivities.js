@@ -82,12 +82,9 @@ Page({
     const db = wx.cloud.database()
     db.collection('user').doc(app.globalData.id).get({
       success: res=> {
-        console.log(res.data)
         c = res.data.bookId_collection
         for(var i = 0; i < c.length; i++) {
-          console.log(c[i])
           for(var j = 0; j < list.length; j++) {
-            console.log(list[j])
             if(c[i].name==list[j].text&&c[i].url==list[j].url) {
               var item = "list[" + j + "].collected"
               that.setData({
