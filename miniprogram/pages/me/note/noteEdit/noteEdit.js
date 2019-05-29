@@ -20,11 +20,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      avatarUrl: options.avatarUrl,
-      currentUserName: options.username,
-      description: options.description
-    })
+    // this.setData({
+    //   avatarUrl: options.avatarUrl,
+    //   currentUserName: options.username,
+    //   description: options.description
+    // })
   },
 
   /**

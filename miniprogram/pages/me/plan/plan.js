@@ -104,6 +104,17 @@ Page({
     wx.navigateTo({
       url: './planEdit/planEdit',
     })
+  },
+
+  editPlan: function () {
+    console.log("editPlan")
+    wx.navigateTo({
+      url: './planEdit/planEdit',
+    })
+  },
+
+  catchCheckboxChange:function(){
+    //空函数，用于防止checkbox事件冒泡
   }
   
 })

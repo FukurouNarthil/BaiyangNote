@@ -108,5 +108,13 @@ Page({
     wx.navigateTo({
       url: './noteEdit/noteEdit',
     })
-  }
+  },
+
+  editNote: function () {
+    console.log("editNote")
+    wx.navigateTo({
+      url: './noteEdit/noteEdit',
+    })
+  },
+
 })
