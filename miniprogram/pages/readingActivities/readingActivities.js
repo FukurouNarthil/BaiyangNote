@@ -25,8 +25,11 @@ Page({
     }, {
         img: "./img/notOpen.png",
       text: "猜你喜欢"
-    }],
 
+      },{
+        img: "./img/activity.png",
+        text: "热门活动"
+      }],
     focus: false,
     inputValue: '',
     searchValue:''
