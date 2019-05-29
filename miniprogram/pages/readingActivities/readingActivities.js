@@ -6,47 +6,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{
-      img: "./img/activity.png",
+    activityList: [{
+      img: "./img/cultureReading.png",
       text: "非遗阅读",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
       collected: 0
     }, {
-      img: "./img/activity.png",
+        img: "./img/bookRecommendation.png",
         text: "新书速递",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
         text: "爱心捐书",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
         text: "感想漂流",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
         text: "图书交换",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }, {
-      img: "./img/activity.png",
+        img: "./img/notOpen.png",
         text: "猜你喜欢",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }],
     focus: false,
-    inputValue: ''
+    inputValue: '',
+    searchValue:''
   },
-
+  searchList:[],
   /**
    * 生命周期函数--监听页面加载
    */
+
   onLoad: function(options) {
     var that = this
     that.getUserCollection()
+    that.setData({
+      searchList: that.data.activityList
+    })
   },
 
   /**
@@ -77,7 +82,7 @@ Page({
 
   getUserCollection: function () {
     var that = this
-    var list = that.data.list
+    var list = that.data.activityList
     var c = []
     const db = wx.cloud.database()
     db.collection('user').doc(app.globalData.id).get({
@@ -86,7 +91,7 @@ Page({
         for(var i = 0; i < c.length; i++) {
           for(var j = 0; j < list.length; j++) {
             if(c[i].name==list[j].text&&c[i].url==list[j].url) {
-              var item = "list[" + j + "].collected"
+              var item = "activityList[" + j + "].collected"
               that.setData({
                 [item]: 1
               })
@@ -125,7 +130,7 @@ Page({
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          var item = "list[" + index + "].collected"
+          var item = "activityList[" + index + "].collected"
           that.setData({
             [item]: 1
           })
@@ -141,5 +146,46 @@ Page({
         }
       }
     })
+  },
+
+  // inputBind:function(event){
+  //   this.setData({
+  //       searchValue:event.detail.value
+  //   })
+  //   console.log("bindInput")
+  //   console.log(this.data.searchValue)
+  // },
+
+  search: function (event) {
+    console.log("qqq")
+    //点击搜索的时候，根据更新的list重新渲染页面
+    this.setData({
+      searchValue: event.detail.value
+    })
+    // console.log("bindInput")
+    // console.log(this.data.searchValue)   
+    this.match() 
+  },
+
+  //搜索关键字匹配,返回一个匹配的list
+  match:function(){
+    var sList = []
+    for(var i in this.data.activityList){
+      var re = new RegExp(this.data.searchValue)
+      if (re.test(this.data.activityList[i].text)){
+        console.log(this.data.searchValue)
+        console.log(this.data.activityList[i])
+        sList.push(this.data.activityList[i])
+      }
+    }
+    console.log("sList:" + sList)    
+    this.setData({
+      searchList:sList
+    })
+
+    // var re = new RegExp("111")
+    // console.log("re:" + re.test("111"))
+
   }
+
 })

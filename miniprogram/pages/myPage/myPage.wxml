@@ -29,7 +29,7 @@
     <view wx:else>
       <view class='login'>
       <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="login_button">点击登录</button>
-      <text class='login_hint'>登录即可体验记笔记、做计划等功能噢~</text>
+      <text class='login_hint'>登录即可解锁记笔记、做计划等功能噢~</text>
       </view>
     </view>
   </view>
