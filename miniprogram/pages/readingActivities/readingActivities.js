@@ -7,7 +7,7 @@ Page({
    */
   data: {
     activityList: [{
-      img: "./img/cultureReading.png",
+      img: "./img/cultureReading.jpg",
       text: "非遗阅读",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
       collected: 0
@@ -104,6 +104,7 @@ Page({
             }
           }
         }
+        console.log(that.data.activityList)
       },
       fail: console.err
     })
@@ -134,11 +135,11 @@ Page({
       content: '确认收藏本活动',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           var item = "activityList[" + index + "].collected"
           that.setData({
             [item]: 1
           })
+          console.log(that.data.activityList)
           const db = wx.cloud.database()
           const _ = db.command
           db.collection('user').doc(app.globalData.id).update({
@@ -146,8 +147,8 @@ Page({
               bookId_collection: _.push(obj)
             })
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
+        } else if(res.cancel) {
+
         }
       }
     })
@@ -185,8 +186,6 @@ Page({
               })
             }
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })

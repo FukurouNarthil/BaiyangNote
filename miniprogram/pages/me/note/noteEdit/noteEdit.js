@@ -12,18 +12,19 @@ Page({
     description: '',
     newAvatarUrl: '',
     newUserName: '',
-    newDescription: ''
+    newDescription: '',
+    defaultBookCover:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      avatarUrl: options.avatarUrl,
-      currentUserName: options.username,
-      description: options.description
-    })
+    // this.setData({
+    //   avatarUrl: options.avatarUrl,
+    //   currentUserName: options.username,
+    //   description: options.description
+    // })
   },
 
   /**
@@ -41,7 +42,7 @@ Page({
   },
 
   // 上传新头像
-  uploadAvatar: function() {
+  uploadBookCover: function() {
     var self = this
     wx.chooseImage({
       count: 1,
