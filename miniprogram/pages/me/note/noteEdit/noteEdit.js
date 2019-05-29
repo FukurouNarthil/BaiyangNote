@@ -48,6 +48,7 @@ Page({
       success: function(res) {
         console.log(res)
         const tempFilePath = res.tempFilePaths[0]
+        console.log(tempFilePath.match(/\.[^.]+?$/))
         self.setData({
           avatarUrl: tempFilePath,
           newAvatarUrl: tempFilePath
@@ -89,9 +90,11 @@ Page({
           console.log('用户点击确定')
           if (filePath) {
             console.log(filePath)
+            var obj = filePath.lastIndexOf("/");
+            var filename = filePath.substr(obj + 1);
             // 上传头像，获取URL
             wx.cloud.uploadFile({
-              cloudPath: 'userAvatars/' + app.globalData.id + '/avatar' + filePath.match(/\.[^.]+?$/)[0],
+              cloudPath: app.globalData.id + filename,
               filePath: filePath,
               success: res => {
                 // get resource ID
@@ -142,5 +145,7 @@ Page({
   },
 
   // 返回信息页
-
+  backToMyPage: function () {
+    wx.navigateBack()
+  }
 })
