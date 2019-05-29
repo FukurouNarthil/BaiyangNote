@@ -7,7 +7,7 @@ Page({
    */
   data: {
     activityList: [{
-      img: "./img/cultureReading.png",
+      img: "./img/cultureReading.jpg",
       text: "非遗阅读",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
       collected: 0
@@ -36,6 +36,11 @@ Page({
         text: "猜你喜欢",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
+    }, {
+      img: "./img/notOpen.png",
+      text: "热门阅读",
+      url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+      collected: 0
     }],
     focus: false,
     inputValue: '',
@@ -99,6 +104,7 @@ Page({
             }
           }
         }
+        console.log(that.data.activityList)
       },
       fail: console.err
     })
@@ -123,6 +129,7 @@ Page({
       'name': e.currentTarget.dataset.eventname,
       'url': e.currentTarget.dataset.eventurl
     }
+    console.log(obj)
     wx.showModal({
       title: '提示',
       content: '确认收藏本活动',
@@ -132,6 +139,7 @@ Page({
           that.setData({
             [item]: 1
           })
+          console.log(that.data.activityList)
           const db = wx.cloud.database()
           const _ = db.command
           db.collection('user').doc(app.globalData.id).update({
@@ -139,6 +147,8 @@ Page({
               bookId_collection: _.push(obj)
             })
           })
+        } else if(res.cancel) {
+
         }
       }
     })
