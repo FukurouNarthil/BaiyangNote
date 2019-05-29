@@ -12,7 +12,8 @@ Page({
     description: '',
     newAvatarUrl: '',
     newUserName: '',
-    newDescription: ''
+    newDescription: '',
+    defaultBookCover:''
   },
 
   /**
@@ -41,7 +42,7 @@ Page({
   },
 
   // 上传新头像
-  uploadAvatar: function() {
+  uploadBookCover: function() {
     var self = this
     wx.chooseImage({
       count: 1,

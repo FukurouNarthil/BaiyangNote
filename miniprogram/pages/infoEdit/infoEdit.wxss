@@ -71,7 +71,7 @@ page {
 .input_user_name {
   width: 100%;
   height: 120rpx;
-  color: #486a00;
+  /* color: #486a00; */
   border: #ebebeb 1rpx solid;
   background-color: #ebebeb;
   border-radius: 20rpx;
