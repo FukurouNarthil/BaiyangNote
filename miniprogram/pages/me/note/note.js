@@ -101,5 +101,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  addNote:function(){
+    console.log("addNote")
+    wx.navigateTo({
+      url: './noteEdit/noteEdit',
+    })
   }
 })

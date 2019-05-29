@@ -2,24 +2,17 @@
   <view class="container_card">
     <!--标题-->
     <view class="top">
-      <view class="page_title">读书计划</view>
-      <view class="small_line"></view>
+      <view class="page_title_row">
+        <text>读书计划</text>
+        <image src="../../index/images/addBook.png" class="add_note_button" bindtap="addPlan"></image>
+      </view>
+      <!-- <view class="small_line"></view> -->
     </view>
     <!--用户头像和用户名-->
     <view class="user">
       <view class="avatar_view"><image src="{{avatarUrl}}" class="avatar"></image></view>
       <view class="username">{{userName}}</view>
     </view>
-    <!--list-->
-    <!-- <view class="list" >
-      <view class="list_item" wx:for="{{list}}">
-        <image class="list_item_img" src="{{item.src}}"></image>
-        <view class="text_container">
-          <text class="list_item_bookTitle">{{item.title}}</text>
-          <text class="list_item_bookNote">{{item.abstract}}</text>          
-        </view>
-      </view>
-    </view> -->
     <view class="list" >
       <checkbox-group bindchange="checkboxChange">
         <label style="display:flex;" class="checkbox_bar" wx:for="{{items}}">

@@ -1,7 +1,7 @@
 <!--pages/me/collection/collection.wxml-->
 <view class='container'>
   <view class='container-card'>
-    <view class='title'>设置</view>
+    <view class='title'>阅读笔记</view>
     <view class='usr_info'>
       <image class='usr_avatar' src="{{avatarUrl}}" bindtap='uploadAvatar' mode='aspectFill'></image>
       <view>

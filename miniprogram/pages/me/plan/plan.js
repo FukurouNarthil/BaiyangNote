@@ -97,5 +97,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  
+  addPlan:function(){
+    console.log("addPlan")
+    wx.navigateTo({
+      url: './planEdit/planEdit',
+    })
   }
+  
 })
