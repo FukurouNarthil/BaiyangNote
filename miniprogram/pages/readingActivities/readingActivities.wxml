@@ -19,7 +19,7 @@
     </view>
     <!--双列活动列表|上拉刷新-->
     <view class="gridview">
-      <view class="gridview-item" wx:for="{{activityList}}" wx:key="">
+      <view class="gridview-item" wx:for="{{searchList}}" wx:key="">
         <image class='gridview-item_img' src="{{item.img}}" bindtap='redirctToEventPage' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}'></image>
         <view class='gridview-item_text'>
           <text>{{item.text}}</text>

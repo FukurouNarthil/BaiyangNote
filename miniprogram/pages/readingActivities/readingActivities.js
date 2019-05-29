@@ -36,6 +36,11 @@ Page({
         text: "猜你喜欢",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
+    }, {
+      img: "./img/notOpen.png",
+      text: "热门阅读",
+      url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
+      collected: 0
     }],
     focus: false,
     inputValue: '',
