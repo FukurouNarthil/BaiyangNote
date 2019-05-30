@@ -10,7 +10,7 @@
     </view>
     <!--用户头像和用户名-->
     <view class="user">
-      <view class="avatar_view"><image src="{{avatarUrl}}" class="avatar"></image></view>
+      <view class="avatar_view"><image src="{{avatarUrl}}" class="avatar" mode='aspectFill'></image></view>
       <view class="username">{{userName}}</view>
     </view>
     <view class="list" >

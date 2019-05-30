@@ -24,10 +24,10 @@
         <view class='gridview-item_text'>
           <text>{{item.text}}</text>
           <view wx:if="{{item.collected}}">
-            <image src='img/collect_s.jpg' class='collect_icon' bindtap='rmCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}'></image>
+            <image src='img/collect_s.jpg' class='collect_icon' bindtap='rmCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}' data-abstract='{{item.abstract}}' data-cover='{{item.img}}'></image>
           </view>
           <view wx:else>
-            <image src='img/collect.jpg' class='collect_icon' bindtap='addCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}'></image>
+            <image src='img/collect.jpg' class='collect_icon' bindtap='addCollection' data-eventName='{{item.text}}' data-eventUrl='{{item.url}}' data-index='{{index}}' data-abstract='{{item.abstract}}' data-cover='{{item.img}}'></image>
           </view>
         </view>
       </view>

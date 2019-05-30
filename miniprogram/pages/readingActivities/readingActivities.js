@@ -10,37 +10,44 @@ Page({
       img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/cultureReading.png?sign=f322892f9cadb6de1879b7b31526cc6f&t=1559141459",
       text: "非遗阅读",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-      collected: 0
+      collected: 0,
+      abstract: '你所不知道的非遗~！'
     }, {
         img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/bookRecommendation.png?sign=095cc12d5a5c203671e7da344d8d0e68&t=1559141019",
         text: "好书推荐",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-        collected: 0
+        collected: 0,
+        abstract: '猫头鹰2018年度阅读~'
     }, {
         img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=9ae95b7863da7762474bc18087317b60&t=1559141521",
         text: "爱心捐书",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-        collected: 0
+        collected: 0,
+        abstract: '捐书献爱心~'
     }, {
-        img: "./img/notOpen.png",
+        img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=e304fa7ffe11b0ba883764b5c80cd4d6&t=1559222489",
         text: "感想漂流",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-        collected: 0
+        collected: 0,
+        abstract: '读后感交流~'
     }, {
-        img: "./img/notOpen.png",
+        img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=e304fa7ffe11b0ba883764b5c80cd4d6&t=1559222489",
         text: "图书交换",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-        collected: 0
+        collected: 0,
+        abstract: '以书会友！'
     }, {
-        img: "./img/notOpen.png",
+        img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=e304fa7ffe11b0ba883764b5c80cd4d6&t=1559222489",
         text: "猜你喜欢",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-        collected: 0
+        collected: 0,
+        abstract: '你可能对这些书籍感兴趣喔~'
     }, {
-      img: "./img/notOpen.png",
+        img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=e304fa7ffe11b0ba883764b5c80cd4d6&t=1559222489",
         text: "新书速递",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
-      collected: 0
+      collected: 0,
+      author: '最新面世的书籍！总有一本适合你~'
     }],
     // activityList:[],
     focus: false,
@@ -97,7 +104,7 @@ Page({
         c = res.data.bookId_collection
         for(var i = 0; i < c.length; i++) {
           for(var j = 0; j < list.length; j++) {
-            if(c[i].name==list[j].text&&c[i].url==list[j].url) {
+            if(c[i].title==list[j].text&&c[i].url==list[j].url) {
               var item = "searchList[" + j + "].collected"
               that.setData({
                 [item]: 1
@@ -106,6 +113,7 @@ Page({
             }
           }
         }
+        console.log(that.data.searchList)
       },
       fail: console.err
     })
@@ -127,8 +135,11 @@ Page({
     var that = this
     var index = e.currentTarget.dataset.index
     var obj = {
-      'name': e.currentTarget.dataset.eventname,
-      'url': e.currentTarget.dataset.eventurl
+      'title': e.currentTarget.dataset.eventname,
+      'url': e.currentTarget.dataset.eventurl,
+      'cover': e.currentTarget.dataset.cover,
+      'abstract': e.currentTarget.dataset.abstract,
+      'collect_time': '2019年5月30日'
     }
     console.log(obj)
     wx.showModal({
@@ -148,8 +159,6 @@ Page({
               bookId_collection: _.push(obj)
             })
           })
-        } else if(res.cancel) {
-
         }
       }
     })
@@ -160,7 +169,10 @@ Page({
     var index = e.currentTarget.dataset.index
     var obj = {
       'name': e.currentTarget.dataset.eventname,
-      'url': e.currentTarget.dataset.eventurl
+      'url': e.currentTarget.dataset.eventurl,
+      'cover': e.currentTarget.dataset.img,
+      'abstract': e.currentTarget.dataset.abstract,
+      'collect_time': '2019年5月30日'
     }
     wx.showModal({
       title: '提示',
@@ -190,6 +202,10 @@ Page({
         }
       }
     })
+  },
+
+  getTimeStamp: function () {
+
   },
 
   // inputBind:function(event){
