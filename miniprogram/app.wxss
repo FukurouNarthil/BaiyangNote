@@ -1,4 +1,9 @@
 /**app.wxss**/
+@import './utils/animate.wxss';
+
+page{
+  font-family: 'FZQingKeBenYueSongS-R-GB'
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -13,4 +18,8 @@
   border-top: 1rpx solid #ccc;
   border-bottom: 0;
 }
+
+@font-face {
+    font-family: 'FZQingKeBenYueSongS-R-GB';
+    src:url('https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/textFont.TTF?sign=9e96970a409476d7b344ceedf5274972&t=1559174320')}
 
