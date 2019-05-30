@@ -13,7 +13,7 @@ Page({
       collected: 0
     }, {
         img: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/bookRecommendation.png?sign=095cc12d5a5c203671e7da344d8d0e68&t=1559141019",
-        text: "新书速递",
+        text: "好书推荐",
         url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
         collected: 0
     }, {
@@ -38,7 +38,7 @@ Page({
         collected: 0
     }, {
       img: "./img/notOpen.png",
-      text: "热门阅读",
+        text: "新书速递",
       url: "https://mp.weixin.qq.com/s/2w8hy3MJksb8ItvA7F-kPw",
       collected: 0
     }],

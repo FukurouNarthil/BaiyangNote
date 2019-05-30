@@ -174,14 +174,12 @@ page {
   font-size: 30rpx;
 }
 
-.list_item_bookAuthor{
+.list_item_bookAbstract{
   color:#7d7d7d;
   font-size: 20rpx;  
-  margin-left: 20rpx;
 }
 
 .list_item_bookTime{
   color:#7d7d7d;
-  font-size: 20rpx;  
-  margin-left: 20rpx;  
+  font-size: 20rpx;   
 }
