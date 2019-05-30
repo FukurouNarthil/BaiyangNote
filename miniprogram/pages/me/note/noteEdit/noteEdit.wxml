@@ -3,12 +3,12 @@
   <view class='container-card'>
     <view class='title'>阅读笔记</view>
     <view class='book_note'>
-      <image class='book_cover' src="../../dataAnalysis/img/bg2.png" bindtap='uploadBookCover' mode='aspectFill'></image>
+      <image class='book_cover' src="https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/bg2.png?sign=dfb9dbe34a6be40e790a5de5efcfaeff&t=1559198238" bindtap='uploadBookCover' mode='aspectFill'></image>
       <view>
         <view class='current_book_name'>
           <text>书名</text>
         </view>
-        <input placeholder='重新输入书名' placeholder-class='input_book_name' maxlength='20' bindinput='onGetInputUserName'></input>
+        <input placeholder='输入书名' placeholder-class='input_book_name' maxlength='20' bindinput='onGetInputUserName'></input>
       </view>
       <view class='usr_sign'>
         <text class='des_title'>笔记</text>

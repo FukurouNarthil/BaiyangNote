@@ -9,25 +9,15 @@ Page({
     avatarUrl: "",
     userName: "",
     list: [{
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author:"作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
+      src: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/bookRecommendation.png?sign=095cc12d5a5c203671e7da344d8d0e68&t=1559141019",
+        title: "好书推荐",
+        abstract:"摘要：猫头鹰文库上线啦～",
+        collect_time: "收藏时间：2019-05-02"
       }, { 
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author: "作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
-      }, {
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author: "作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
-      }, {
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author: "作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
+        src: "https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/notOpen.png?sign=9ae95b7863da7762474bc18087317b60&t=1559141521",
+        title: "爱心捐书",
+        abstract: "摘要：一起来给山区孩子捐书吧！",
+        collect_time: "收藏时间：2019-05-10"
       }]
   },
 

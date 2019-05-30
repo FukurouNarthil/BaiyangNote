@@ -9,17 +9,27 @@ Page({
     avatarUrl: "",
     userName: "",
     items: [
-      { plan:"今天的计划是 ",time:"2019-05-01" },
-      { plan: "今天的计划是", time: "2019-05-01", checked: 'true' },
-      { plan: "今天的计划是  ", time: "2019-05-01" },
-      { plan: "今天的计划是 ", time: "2019-05-01" },
-      { plan: "今天的计划是 ", time: "2019-05-01" },
-      { plan: "今天的计划是 ", time: "2019-05-01" },
+      { plan: "今天想看完《活着》 ", time: "2019-05-08", checked:false, planDetail:"今天想看完《活着》的第二章！" },
+      { plan: "明天看《围城》的p", time: "2019-05-07", checked:true, planDetail: "明天看《围城》的p101-p109" },
+      { plan: "这周把围城看完", time: "2019-05-01", checked:false, planDetail: "这周把围城看完" },
+      { plan: "今天想看《在细雨中 ", time: "2019-04-28", checked:false, planDetail: "今天想看《在细雨中呼喊》！"},
+      { plan: "今天的《而已集》看", time: "2019-04-20", checked:false, planDetail: "今天的《而已集》看到一半了～" },
+      { plan: "周末看《而已集》的", time: "2019-04-01", checked:false, planDetail: "周末看《而已集》的第一章" },
     ]
   },
 
   checkboxChange(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    // if (e.checked==true){
+
+    // }else{
+    //   e.checked: true,
+    // }
+
+    // this.setData({
+    //   checked: false,
+    // })
+    console.log(this.data.items)
   },
 
   /**
