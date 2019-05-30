@@ -57,7 +57,7 @@ Page({
     this.setData({
       searchList: this.data.activityList
     })
-    that.getUserCollection()
+    this.getUserCollection()
   },
 
   /**

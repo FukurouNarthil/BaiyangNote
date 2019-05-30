@@ -1,4 +1,6 @@
 /* pages/me/collection/collection.wxss */
+@import '../../../utils/animate.wxss';
+
 page {
   height: 100%;
   font-size: 32rpx;
@@ -47,29 +49,100 @@ page {
 
 .content1{
   position:absolute;
-  width:80%;
-  height:60%;
-  left:100px;
-  top:100px;
-  color:#486A00;
+  width:90%;
+  height:70%;
+  left:15px;
+  top:60px;
+  color:#7da47c;
+
+  display: flex;  
+  flex-direction:column; 
+  align-items: center;
+  /* justify-content: center; */
+  font-size:35rpx;
+}
+
+.line{
+  display: flex;  
+  flex-direction:row;  
+  width:100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.font1{
+  color:#486a00;
+  font-size:40rpx;
+}
+
+.font2{
+  color:#486a00;
+  font-size:50rpx;
 }
 
 .content2{
   position:absolute;
-  width:80%;
-  height:60%;
-  left:100px;
-  top:100px;
+  width:90%;
+  height:70%;
+  left:15px;
+  top:60px;
   color:#eeeeee;
+
+  display: flex;  
+  flex-direction:column; 
+  align-items: center;
+  /* justify-content: center; */
+  font-size:35rpx;
+}
+
+.font3{
+  color:#324531;
+  font-size:40rpx;
+}
+
+.font4{
+  color:#324531;
+  font-size:50rpx;
 }
 
 .content3{
   position:absolute;
-  width:80%;
-  height:60%;
-  left:100px;
-  top:100px;
-  color:#486A00;
+  width:90%;
+  height:70%;
+  left:15px;
+  top:50px;
+  color:#eeeeee;
+
+  display: flex;  
+  flex-direction:column; 
+  align-items: center;
+  /* justify-content: center; */
+  font-size:35rpx;
+}
+
+.font5{
+  color:#6b8b6a;
+  font-size:35rpx;
+}
+
+.font6{
+  color:#486a00;
+  font-size:50rpx;
+}
+
+.font7{
+  color:#69950b;
+  font-size:45rpx;
+}
+
+.font8{
+  color:#9fbe5c;
+  font-size:40rpx;
+}
+
+.font9{
+  color:#7da47c;
+  font-size:35rpx;
 }
 
 .button_bar{

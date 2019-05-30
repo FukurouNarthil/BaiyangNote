@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import './utils/animate.wxss';
+
 page{
   font-family: 'FZQingKeBenYueSongS-R-GB'
 }
