@@ -6,7 +6,7 @@
         <view class='books_row'>
             <block wx:for='{{item}}' wx:for-item='book' wx:key='*this'>
               <view class='book'>
-                <image class='cover' src='{{book.cover}}' bindtap='openBook' data-name='{{book.name}}'></image>
+                <image class='cover' src='{{book.cover}}' bindtap='openBook' bindlongtap='delBook' data-name='{{book.name}}'></image>
                 <view class='book_title'>{{book.name}}</view>
               </view>
             </block>

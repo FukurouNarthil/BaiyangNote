@@ -88,9 +88,9 @@ page {
 }
 .clock {
   position: absolute;
-  top: 37%;
-  left: 16%;
-  font-size: 80rpx;
+  top: 35%;
+  left: 18%;
+  font-size: 100rpx;
   font-weight: bold;
   color: #324531;
 }
@@ -111,7 +111,7 @@ page {
 }
 .books-display {
   width: 500rpx;
-  height: 620rpx;
+  height: 54vh;
   position: absolute;
   top: 18%;
   left: 5%;
@@ -124,12 +124,28 @@ page {
   margin-bottom: 20rpx;
   color: #768f40;
 }
+.books {
+  width: 500rpx;
+  height: 54vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.books_row {
+  width: 480rpx;
+  height: 24vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .display {
-  width: 230rpx;
-  height: 290rpx;
-  background-color: rgb(255, 224, 184);
-  position: absolute;
-  color: rgb(187, 113, 3);
+  width: 220rpx;
+  height: 24vh;
+  background: url("https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/pic/bg2.png?sign=351196f4c0989067ce91d398fc28ea21&t=1559188967");
+  background-repeat:no-repeat; 
+  background-size:100% 100%;
+  -moz-background-size:100% 100%;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;

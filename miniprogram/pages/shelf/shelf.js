@@ -139,4 +139,9 @@ Page({
       fail: console.err
     })
   },
+
+  // 删除书本
+  delBook: function (e) {
+
+  }
 })

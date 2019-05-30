@@ -30,17 +30,14 @@
                 <view class='noReading' wx:if="{{!bookcount}}">
                   <text>尚无最近阅读哦~</text>
                 </view>
-                <view wx:else>
+                <view class='books' wx:else>
                   <block wx:for="{{latest_books}}" wx:key="*that">
-                    <view wx:if="{{index<2}}">
-                      <view class='display' style="left:{{(index%2)*270}}rpx; top:0rpx;" bindtap='openBook' data-bookname='{{item}}'>
-                        <text>{{item}}</text>
-                      </view>
-                    </view>
-                    <view wx:else>
-                      <view class='display' style='left:{{(index%2)*270}}rpx; top:330rpx;' bindtap='openBook' data-bookname='{{item}}'>
-                        <text>{{item}}</text>
-                      </view>
+                    <view class='books_row'>
+                      <block wx:for="{{item}}" wx:key="*book" wx:for-item='book'>
+                        <view class='display' bindtap='openBook' data-bookname='{{book}}'>
+                          <text>{{book}}</text>
+                        </view>
+                      </block>
                     </view>
                   </block>
                 </view>

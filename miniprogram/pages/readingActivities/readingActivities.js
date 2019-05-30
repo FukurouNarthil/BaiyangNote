@@ -53,6 +53,7 @@ Page({
    */
 
   onLoad: function(options) {
+    var that = this
     this.getUserCollection()
     this.setData({
       searchList: this.data.activityList
@@ -105,7 +106,6 @@ Page({
             }
           }
         }
-        console.log(that.data.searchList)
       },
       fail: console.err
     })
