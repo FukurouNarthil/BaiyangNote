@@ -30,17 +30,19 @@ Page({
       })
       return
     }
-    that.getShelf()
+    wx.showLoading({
+      title: '加载中',
+    })
   },
 
   onShow: function() {
+    this.getShelf()
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0
       })
     }
-    
     if (!interval && this.data.time != 0) {
       interval = setInterval(() => {
         this.setData({
@@ -119,9 +121,6 @@ Page({
   },
 
   getShelf: function() {
-    wx.showLoading({
-      title: '加载中',
-    })
     var that = this
     app.getUserInfo().then(function(res) {
       var shelf = res.data.shelf
@@ -215,9 +214,7 @@ Page({
             success: function(res) {
               var latest = that.data.latest_books
               latest.push(fileName)
-              that.setData({
-                latest_books: latest.slice(1, 5)
-              })
+              that.getShelf()
               app.globalData.shelf = latest.slice(1, 5)
               const db = wx.cloud.database()
               const _ = db.command

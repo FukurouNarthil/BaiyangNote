@@ -142,6 +142,38 @@ Page({
 
   // 删除书本
   delBook: function (e) {
-
+    var that = this
+    console.log(e)
+    wx.showModal({
+      title: '提示',
+      content: '确认移除本书吗？',
+      success(res) {
+        if(res.confirm) {
+          var name = e.currentTarget.dataset.name
+          const db = wx.cloud.database()
+          const _ = db.command
+          // 移除user表中shelf数组里的该书本
+          db.collection('user').doc(app.globalData.id).get({
+            success: res => {
+              var s = res.data.shelf
+              var i = s.indexOf(name)
+              s.splice(i, 1)
+              that.setData({
+                books: that.displayShelf(s)
+              })
+              db.collection('user').doc(app.globalData.id).update({
+                data: {
+                  shelf: s
+                }
+              })
+              db.collection('bookCollection').where({
+                bookName: _.eq(name),
+                bookOwner: app.globalData.id
+              }).remove()
+            }
+          })
+        }
+      }
+    })
   }
 })
