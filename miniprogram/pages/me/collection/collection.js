@@ -21,7 +21,6 @@ Page({
     }).get({
       success: res => {
         console.log(res.data)
-        if (res.data[0].userName) {
           this.setData({
             avatarUrl: res.data[0].avatarUrl,
             userName: res.data[0].userName,
@@ -29,7 +28,8 @@ Page({
             list: res.data[0].bookId_collection,
             collection_count: res.data[0].bookId_collection.length
           })
-        }
+          console.log(this.data.list)
+        
       },
       fail: err => {
         wx.showToast({
