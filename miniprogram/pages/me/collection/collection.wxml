@@ -7,23 +7,30 @@
     </view>
     <!--用户头像和用户名-->
     <view class="user">
-      <view class="avatar_view"><image src="{{avatarUrl}}" class="avatar"></image></view>
+      <view class="avatar_view">
+        <image src="{{avatarUrl}}" class="avatar" mode='aspectFill'></image>
+      </view>
       <view class="username">{{userName}}</view>
     </view>
     <!--list-->
-    <view class="list" >
-      <view class="list_item" wx:for="{{list}}">
-        <view class="small_leaf_part">
-          <image src="./img/leaf.png" class="small_leaf" mode="scaleToFill"></image>
-        </view>
-        <view class="except_small_leaf_part">
-          <image class="list_item_img" src="{{item.src}}"></image>
-          <view class="text_container">
-            <text class="list_item_bookTitle">{{item.title}}</text>
-            <text class="list_item_bookAuthor">{{item.author}}</text>     
-            <text class="list_item_bookTime">{{item.collect_time}}</text>       
+    <view class="list">
+      <view wx:if="{{collection_count}}">
+        <view class="list_item" wx:for="{{list}}">
+          <view class="small_leaf_part">
+            <image src="./img/leaf.png" class="small_leaf" mode="scaleToFill"></image>
+          </view>
+          <view class="except_small_leaf_part">
+            <image class="list_item_img" src="{{item.src}}"></image>
+            <view class="text_container">
+              <text class="list_item_bookTitle">{{item.title}}</text>
+              <text class="list_item_bookAuthor">{{item.author}}</text>
+              <text class="list_item_bookTime">{{item.collect_time}}</text>
+            </view>
           </view>
         </view>
+      </view>
+      <view wx:else>
+        <text class='hint'>暂无收藏的活动哦~</text>
       </view>
     </view>
     <!-- <view>

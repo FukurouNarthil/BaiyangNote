@@ -127,8 +127,10 @@ Page({
     var that = this
     var index = e.currentTarget.dataset.index
     var obj = {
-      'name': e.currentTarget.dataset.eventname,
-      'url': e.currentTarget.dataset.eventurl
+      'title': e.currentTarget.dataset.eventname,
+      'url': e.currentTarget.dataset.eventurl,
+      'cover': '',
+      'author': '猫头鹰在这里筑巢了'
     }
     console.log(obj)
     wx.showModal({
@@ -148,8 +150,6 @@ Page({
               bookId_collection: _.push(obj)
             })
           })
-        } else if(res.cancel) {
-
         }
       }
     })
@@ -160,7 +160,8 @@ Page({
     var index = e.currentTarget.dataset.index
     var obj = {
       'name': e.currentTarget.dataset.eventname,
-      'url': e.currentTarget.dataset.eventurl
+      'url': e.currentTarget.dataset.eventurl,
+      'cover': ''
     }
     wx.showModal({
       title: '提示',
@@ -190,6 +191,10 @@ Page({
         }
       }
     })
+  },
+
+  getTimeStamp: function () {
+
   },
 
   // inputBind:function(event){

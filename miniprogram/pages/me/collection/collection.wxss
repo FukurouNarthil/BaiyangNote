@@ -185,3 +185,12 @@ page {
   font-size: 20rpx;  
   margin-left: 20rpx;  
 }
+
+.hint {
+  width: 300rpx;
+  height: 90rpx;
+  position: absolute;
+  top: 45vh;
+  left: 33%; 
+  color: #768f40;
+}

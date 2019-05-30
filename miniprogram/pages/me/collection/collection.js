@@ -8,27 +8,9 @@ Page({
   data: {
     avatarUrl: "",
     userName: "",
-    list: [{
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author:"作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
-      }, { 
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author: "作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
-      }, {
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author: "作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
-      }, {
-        src: "./img/book_note.png",
-        title: "《书名书名书名》",
-        author: "作者：xxx",
-        collect_time: "收藏时间：xxxxxxx"
-      }]
+    cover: './img/book_note.png',
+    list: [],
+    collection_count: 0
   },
 
   /**
@@ -42,10 +24,17 @@ Page({
       success: res => {
         console.log(res.data)
         if (res.data[0].userName) {
+          var c = res.data[0].bookId_collection
+          for (var i = 0; i < c.length; i++) {
+            c[i].src = this.data.cover
+            c[i].collect_time = '2019年5月29日'
+          }
           this.setData({
             avatarUrl: res.data[0].avatarUrl,
             userName: res.data[0].userName,
-            description: res.data[0].description
+            description: res.data[0].description,
+            list: c,
+            collection_count: c.length
           })
         }
       },
@@ -60,37 +49,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
   },
 
@@ -101,10 +62,4 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
