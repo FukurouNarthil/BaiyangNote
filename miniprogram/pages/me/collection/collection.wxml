@@ -20,10 +20,10 @@
             <image src="./img/leaf.png" class="small_leaf" mode="scaleToFill"></image>
           </view>
           <view class="except_small_leaf_part">
-            <image class="list_item_img" src="{{item.src}}"></image>
+            <image class="list_item_img" src="{{item.cover}}"></image>
             <view class="text_container">
               <text class="list_item_bookTitle">{{item.title}}</text>
-              <text class="list_item_bookAuthor">{{item.author}}</text>
+              <text class="list_item_bookAbstract">{{item.abstract}}</text>
               <text class="list_item_bookTime">{{item.collect_time}}</text>
             </view>
           </view>

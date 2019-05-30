@@ -8,9 +8,7 @@ Page({
   data: {
     avatarUrl: "",
     userName: "",
-    cover: './img/book_note.png',
-    list: [],
-    collection_count: 0
+    list: []
   },
 
   /**
@@ -24,17 +22,12 @@ Page({
       success: res => {
         console.log(res.data)
         if (res.data[0].userName) {
-          var c = res.data[0].bookId_collection
-          for (var i = 0; i < c.length; i++) {
-            c[i].src = this.data.cover
-            c[i].collect_time = '2019年5月29日'
-          }
           this.setData({
             avatarUrl: res.data[0].avatarUrl,
             userName: res.data[0].userName,
             description: res.data[0].description,
-            list: c,
-            collection_count: c.length
+            list: res.data[0].bookId_collection,
+            collection_count: res.data[0].bookId_collection.length
           })
         }
       },
