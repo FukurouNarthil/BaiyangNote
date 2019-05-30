@@ -1,10 +1,7 @@
-/* .whole-bar{
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width:100%;
-} */
+
+page{
+  font-family: 'FZQingKeBenYueSongS-R-GB'
+}
 
 .tab-bar {
   position: fixed;
@@ -14,7 +11,7 @@
   height: 60px;
   background: #eeeeee;
   display: flex;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(safe - area - inset - bottom);
   width: 100%;
   margin-bottom:10rpx;
 
@@ -52,4 +49,9 @@
 
 .tab-bar-item cover-view {
   font-size: 10px;
+}
+
+@font-face {
+  font-family: 'FZQingKeBenYueSongS-R-GB';
+  src: url('https://7265-readingbook-bc6d6f-1258771595.tcb.qcloud.la/textFont.TTF?sign=9e96970a409476d7b344ceedf5274972&t=1559174320')
 }

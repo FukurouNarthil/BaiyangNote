@@ -58,7 +58,7 @@ Page({
     this.setData({
       searchList: this.data.activityList
     })
-    that.getUserCollection()
+    this.getUserCollection()
   },
 
   /**
@@ -106,7 +106,6 @@ Page({
             }
           }
         }
-        console.log(that.data.searchList)
       },
       fail: console.err
     })
@@ -215,12 +214,12 @@ Page({
   //搜索关键字匹配,返回一个匹配的list
   match:function(){
     var sList = []
-    for(var i in this.data.searchList){
+    for(var i in this.data.activityList){
       var re = new RegExp(this.data.searchValue)
-      if (re.test(this.data.searchList[i].text)){
+      if (re.test(this.data.activityList[i].text)){
         console.log(this.data.searchValue)
-        console.log(this.data.searchList[i])
-        sList.push(this.data.searchList[i])
+        console.log(this.data.activityList[i])
+        sList.push(this.data.activityList[i])
       }
     }
     console.log("sList:" + sList)    

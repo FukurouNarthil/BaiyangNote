@@ -34,7 +34,6 @@ Page({
   },
 
   onShow: function() {
-
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -130,9 +129,12 @@ Page({
       if (shelf.length > 4) {
         latest = shelf.slice(shelf.length - 4, shelf.length)
       }
+      var temp_1 = latest.slice(0, 2)
+      var temp_2 = latest.slice(2, 4)
+      var data = [temp_1, temp_2]
       that.setData({
         bookcount: shelf.length,
-        latest_books: latest
+        latest_books: data
       })
       wx.hideLoading()
     })
@@ -172,7 +174,6 @@ Page({
         wx.cloud.getTempFileURL({
           fileList: [fileID],
           success: res => {
-            // get temp file URL
             console.log(res.fileList)
             var data = res.fileList[0].tempFileURL
             wx.request({
@@ -186,10 +187,8 @@ Page({
                 })
               }
             })
-
           },
           fail: err => {
-            // handle error
           }
         })
       },
@@ -230,7 +229,6 @@ Page({
                   bookFileId: res.fileID
                 },
                 success: res => {
-                  // 在返回结果中会包含新创建的记录的 _id
                   db.collection('user').doc(app.globalData.id).update({
                     data: {
                       shelf: _.push(fileName)
