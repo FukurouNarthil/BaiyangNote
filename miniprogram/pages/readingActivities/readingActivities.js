@@ -53,6 +53,7 @@ Page({
    */
 
   onLoad: function(options) {
+    var that = this
     this.getUserCollection()
     this.setData({
       searchList: this.data.activityList
